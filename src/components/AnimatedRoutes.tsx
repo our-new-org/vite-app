@@ -7,10 +7,10 @@ const AnimatedRoutes = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/vite-app" Component={Home} />
-        <Route path="/vite-app/dashboard" Component={Dashboard} />
+        <Route path="/vite-app" element={<Home />} />
+        <Route path="/vite-app/dashboard" element={<Dashboard />} />
       </Routes>
     </AnimatePresence>
   );

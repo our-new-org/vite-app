@@ -1,18 +1,15 @@
-import { motion } from 'framer-motion';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import supabase from './libs/supabase';
 import { useContext } from 'react';
 import StoreContext from './contexts/Store';
+import AnimatedDiv from './components/AnimatedDiv';
 
 export default function Home() {
   const { session } = useContext(StoreContext);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}>
+    <AnimatedDiv>
       <div>Welcome !</div>
       {!session && (
         <Auth
@@ -21,6 +18,6 @@ export default function Home() {
           providers={[]}
         />
       )}
-    </motion.div>
+    </AnimatedDiv>
   );
 }
