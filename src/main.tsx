@@ -2,9 +2,18 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { StoreContextProvider } from '../contexts/Store';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StoreContextProvider>
-    <App />
+    <RouterProvider router={router} />
   </StoreContextProvider>
 );
