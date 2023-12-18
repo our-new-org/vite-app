@@ -10,7 +10,7 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
-export default function App() {
+export default function Login() {
   const { session, setSession } = useContext(StoreContext);
 
   useEffect(() => {

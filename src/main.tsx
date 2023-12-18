@@ -1,19 +1,17 @@
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
 import './index.css';
 import { StoreContextProvider } from '../contexts/Store';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-
-const router = createBrowserRouter([
-  {
-    path: '/vite-app/',
-    element: <App />,
-    children: [],
-  },
-]);
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Home.tsx';
+import Login from './Login.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StoreContextProvider>
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/vite-app" Component={Home} />
+        <Route path="/vite-app/login" Component={Login} />
+      </Routes>
+    </BrowserRouter>
   </StoreContextProvider>
 );
