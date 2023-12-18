@@ -8,15 +8,19 @@ const Navbar = () => {
 
   return (
     <nav>
-      <ul>
+      <ul
+        style={{
+          display: 'flex',
+          listStyleType: 'none',
+          gap: 20,
+        }}>
         <li>
           <Link to={'/vite-app'}>Home</Link>
         </li>
-        {!session ? (
-          <li>
-            <Link to={'/vite-app/login'}>Login</Link>
-          </li>
-        ) : (
+        <li>
+          <Link to={'/vite-app/Dashboard'}>Dashboard</Link>
+        </li>
+        {session && (
           <li>
             <span onClick={() => supabase.auth.signOut()}>Logout</span>
           </li>
