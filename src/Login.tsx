@@ -1,33 +1,20 @@
 import './index.css';
-import { useEffect, useContext } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { useContext } from 'react';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import StoreContext from '../contexts/Store';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+import StoreContext from './contexts/Store';
+import { motion } from 'framer-motion';
+import supabase from './libs/supabase';
 
 export default function Login() {
-  const { session, setSession } = useContext(StoreContext);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
+  const { session } = useContext(StoreContext);
 
   if (!session) {
     return (
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         style={{
           width: '100vw',
           height: '100vh',
@@ -42,14 +29,7 @@ export default function Login() {
             providers={[]}
           />
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <div>Logged in!</div>
-        <button onClick={() => supabase.auth.signOut()}>Sign out</button>
-      </div>
+      </motion.div>
     );
   }
 }
