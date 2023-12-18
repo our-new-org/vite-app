@@ -1,8 +1,9 @@
 import './index.css';
-import { useState, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
+import StoreContext from '../contexts/Store';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -10,9 +11,7 @@ const supabase = createClient(
 );
 
 export default function App() {
-  const [session, setSession] = useState(null);
-
-  useEffect(() => console.log(session), [session]);
+  const { session, setSession } = useContext(StoreContext);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
