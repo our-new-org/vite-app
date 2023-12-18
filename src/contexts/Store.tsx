@@ -7,6 +7,7 @@ import {
 } from 'react';
 import React from 'react';
 import { Session } from '@supabase/supabase-js';
+import supabase from '../libs/supabase';
 
 type ContextType = {
   isSignedIn: boolean;
@@ -32,12 +33,22 @@ export const StoreContextProvider: FunctionComponent<StoreContextProps> = (
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
   const [user, setUser] = useState<null>(null);
   const [session, setSession] = useState<Session | null>(null);
-
   useEffect(() => {
     // Only runs once when the application starts
   }, []);
 
-  useEffect(() => console.log(session), [session]);
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session: sessionIn } }) => {
+      setSession(sessionIn);
+    });
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, sessionOut) => {
+      setSession(sessionOut);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const state = useMemo(
     () => ({
