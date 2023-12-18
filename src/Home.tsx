@@ -4,15 +4,9 @@ import { ThemeSupa } from '@supabase/auth-ui-shared';
 import supabase from './libs/supabase';
 import { useContext } from 'react';
 import StoreContext from './contexts/Store';
-import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const { session } = useContext(StoreContext);
-  const navigate = useNavigate();
-
-  if (session) {
-    navigate('/vite-app/dashboard');
-  }
 
   return (
     <motion.div
