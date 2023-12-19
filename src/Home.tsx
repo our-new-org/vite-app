@@ -9,24 +9,51 @@ import homeImage from "../src/asserts/home.jpg";
 export default function Home() {
   const { session } = useContext(StoreContext);
 
+  const scrollToLogin = () => {
+    const authContainer = document.getElementsByClassName("auth-container")[0];
+    authContainer.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <AnimatedDiv className="home">
-     <main className="home-container">
-      <div className="home-container__welcome">
-        
-        <img src={homeImage} alt="home image" className="home-container__welcome__image"/>
-      </div>
-
-      <div className="home-container__login">
-       <span>Welcome Back!</span>
-        {!session && (
-          <Auth
-            supabaseClient={supabase}
-            appearance={{ theme: ThemeSupa }}
-            providers={[]}
+      <main className="home-container">
+        <div className="home-container__welcome">
+          <button
+            onClick={scrollToLogin}
+            className="home-container__welcome__loginButton"
+          >
+            Login
+          </button>
+          <img
+            src={homeImage}
+            alt="home image"
+            className="home-container__welcome__image"
           />
-        )}
-      </div>
+        </div>
+
+        <div className="home-container__login">
+          <span className="home-container__login--text">Welcome Back!</span>
+          {!session && (
+            <Auth
+              supabaseClient={supabase}
+              appearance={{
+                theme: ThemeSupa,
+                className: { container: "auth-container" },
+                style: {
+                  container: { margin: "8px", color: 'white' },
+                  anchor: { color: "#5D5C57", margin: "10px" },
+                  button: {
+                    backgroundColor: "#5D5C57",
+                    borderColor: "#5D5C57",
+                    color: "white",
+                    borderRadius: "5px",
+                  },
+                },
+              }}
+              providers={[]}
+            />
+          )}
+        </div>
       </main>
     </AnimatedDiv>
   );

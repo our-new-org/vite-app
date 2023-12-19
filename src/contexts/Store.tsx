@@ -4,10 +4,10 @@ import {
   useMemo,
   useEffect,
   createContext,
-} from 'react';
-import React from 'react';
-import { Session } from '@supabase/supabase-js';
-import supabase from '../libs/supabase';
+} from "react";
+import React from "react";
+import { Session } from "@supabase/supabase-js";
+import supabase from "../libs/supabase";
 
 type ContextType = {
   isSignedIn: boolean;
@@ -36,6 +36,10 @@ export const StoreContextProvider: FunctionComponent<StoreContextProps> = (
   useEffect(() => {
     // Only runs once when the application starts
   }, []);
+
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session: sessionIn } }) => {
