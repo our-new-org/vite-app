@@ -9,15 +9,17 @@ export default function Home() {
   const { session } = useContext(StoreContext);
 
   return (
-    <AnimatedDiv>
-      <div>Welcome !</div>
-      {!session && (
-        <Auth
-          supabaseClient={supabase}
-          appearance={{ theme: ThemeSupa }}
-          providers={[]}
-        />
-      )}
+    <AnimatedDiv className="home-parent">
+      <section className="home-block1">Welcome !</section>
+      <section className="home-block2">
+        {!session && (
+          <Auth
+            supabaseClient={supabase}
+            appearance={{ theme: ThemeSupa }}
+            providers={[]}
+          />
+        )}
+      </section>
     </AnimatedDiv>
   );
 }
