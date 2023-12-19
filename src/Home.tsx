@@ -6,6 +6,16 @@ import StoreContext from "./contexts/Store";
 import AnimatedDiv from "./components/AnimatedDiv";
 import homeImage from "../src/asserts/home.jpg";
 
+/* const customTheme = {
+  default: {
+    colors: {
+      brand: 'hsl(153 60.0% 53.0%)',
+      brandAccent: 'hsl(154 54.8% 45.1%)',
+      brandButtonText: '#514438',
+    },
+  },
+} */
+
 export default function Home() {
   const { session } = useContext(StoreContext);
 
@@ -41,15 +51,16 @@ export default function Home() {
                 className: { container: "auth-container" },
                 style: {
                   container: { margin: "8px", color: 'white' },
-                  anchor: { color: "#5D5C57", margin: "10px" },
+                  anchor: { color: "#38665F", margin: "10px" },
                   button: {
-                    backgroundColor: "#5D5C57",
+                    backgroundColor: "#38665F",
                     borderColor: "#5D5C57",
                     color: "white",
                     borderRadius: "5px",
                   },
                 },
               }}
+              theme="default"
               providers={[]}
             />
           )}

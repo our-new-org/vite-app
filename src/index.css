@@ -10,8 +10,8 @@
 
 :root {
   --primary-color: #F2F1EB;
-  --secondary-color: #94C0CD;
-  --action-color: #5D5C57;
+  --secondary-color: #D0D3C8;
+  --action-color: #38665F;
   --text-color: black;
   --roundness: 5px;
   --roundness-xl: 30px;
@@ -20,20 +20,19 @@
 body {
   padding: 20px;
   /* place-items: center; */
-  min-width: 100vw;
-  min-height: 100vh;
+  /* min-width: 100vw;
+  min-height: 100vh; */
   background-color: var(--primary-color);
 }
 
 .home {
   gap: 50px;
   flex-flow: row wrap;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .home-container {
   gap: 50px;
-  margin: 40px;
   border-radius: var(--roundness-xl);
   background-color: var(--secondary-color);
 }
@@ -53,7 +52,7 @@ body {
 .home-container__welcome__loginButton {
   position: relative;
   top: 80px;
-  left: 110px;
+  left: 150px;
   padding: 8px;
   background-color: var(--action-color);
   color: white;
@@ -62,7 +61,7 @@ body {
 
 .home-container__login {
   flex-grow: 1;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .home-container__login--text {
