@@ -3,11 +3,19 @@
   margin: 0px;
   padding: 0px;
 }
+
+:root {
+  --primary-color: #fdf5e6;
+  --secondary-color: #8fbc8f;
+  --action-color: #008080;
+}
+
 body {
   padding: 20px;
   /* place-items: center; */
   min-width: 100vw;
   min-height: 100vh;
+  background-color: var(--primary-color);
 }
 
 .home-parent {
