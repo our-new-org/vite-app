@@ -1,0 +1,25 @@
+.rdp-nav_icon {
+  color: var(--action-color);
+}
+
+.rdp-month {
+  background-color: var(--secondary-color);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.rdp {
+  margin: 0px !important;
+  --rdp-cell-size: 40px; /* Size of the day cells. */
+  --rdp-caption-font-size: 18px; /* Font size for the caption labels. */
+  /* Accent color for the background of selected days. */
+  --rdp-accent-color: var(--action-color) !important;
+  --rdp-background-color: #e7edff; /* Background color for the hovered/focused elements. */
+  /* Accent color for the background of selected days (to use in dark-mode). */
+  --rdp-accent-color-dark: var(--action-color) !important;
+  /* Background color for the hovered/focused elements (to use in dark-mode). */
+  --rdp-background-color-dark: var(--action-color) !important;
+  --rdp-outline: 2px solid var(--rdp-accent-color); /* Outline border for focused elements */
+  --rdp-outline-selected: 3px solid var(--rdp-accent-color); /* Outline border for focused _and_ selected elements */
+  --rdp-selected-color: #fff; /* Color of selected day text */
+}
