@@ -2,7 +2,7 @@ import AnimatedDiv from '../components/AnimatedDiv';
 import { setHours, startOfDay, setMinutes } from 'date-fns';
 import 'react-day-picker/dist/style.css';
 import SlotPicker from '../components/SlotPicker';
-
+import image from '../assets/home.jpg';
 //const yesterday = subDays(new Date(), 1);
 
 const Facility = () => {
@@ -12,6 +12,9 @@ const Facility = () => {
 
   return (
     <AnimatedDiv>
+      <div className="image-container">
+        <img src={image} alt={'Laundry'} className="facility__image" />
+      </div>
       <SlotPicker
         facilityName="Laundry"
         slotDuration={240}
