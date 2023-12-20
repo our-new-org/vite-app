@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { addMinutes } from 'date-fns';
 import Slot from './Slot';
+import { Button } from 'antd';
 
 interface SlotPickerProps {
   facilityName: string;
@@ -30,8 +31,8 @@ const SlotPicker: React.FC<SlotPickerProps> = ({
   }
 
   return (
-    <div>
-      <h1 className="facility-title">{facilityName}</h1>
+    <section className="facility">
+      <h1 className="facility__title">{facilityName}</h1>
       <ul className="slot-list">
         {slots.map((slot, index) => (
           <Slot
@@ -43,7 +44,10 @@ const SlotPicker: React.FC<SlotPickerProps> = ({
           />
         ))}
       </ul>
-    </div>
+      <Button type="primary" block size="large">
+        Book slot
+      </Button>
+    </section>
   );
 };
 

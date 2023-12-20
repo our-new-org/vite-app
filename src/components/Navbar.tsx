@@ -12,7 +12,7 @@ const Navbar = () => {
       <ul className="list">
         <span>logo</span>
         <span>
-          <UserOutlined />
+          <UserOutlined className="user-icon" />
         </span>
         {false && (
           <>

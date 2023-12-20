@@ -34,7 +34,7 @@ const Slot = ({
           )}`}
         </p>
       </div>
-      <RightOutlined />
+      <RightOutlined className="slot-item__arrow" />
     </li>
   );
 };
