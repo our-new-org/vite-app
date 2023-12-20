@@ -1,7 +1,7 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Home from '../Home';
-import Dashboard from '../Dashboard';
-import { AnimatePresence } from 'framer-motion';
+import { Routes, Route, useLocation } from "react-router-dom";
+import Home from "../pages/Home";
+import Dashboard from "../pages/Dashboard";
+import { AnimatePresence } from "framer-motion";
 
 const AnimatedRoutes = () => {
   const location = useLocation();

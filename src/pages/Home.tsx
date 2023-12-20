@@ -1,9 +1,9 @@
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import supabase from "./libs/supabase";
+import supabase from "../libs/supabase";
 import { useContext } from "react";
-import StoreContext from "./contexts/Store";
-import AnimatedDiv from "./components/AnimatedDiv";
+import StoreContext from "../contexts/Store";
+import AnimatedDiv from "../components/AnimatedDiv";
 import homeImage from "../src/asserts/home.jpg";
 
 /* const customTheme = {
@@ -50,7 +50,7 @@ export default function Home() {
                 theme: ThemeSupa,
                 className: { container: "auth-container" },
                 style: {
-                  container: { margin: "8px", color: 'white' },
+                  container: { margin: "8px", color: "white" },
                   anchor: { color: "#38665F", margin: "10px" },
                   button: {
                     backgroundColor: "#38665F",
