@@ -1,0 +1,22 @@
+.grid-title {
+  margin-bottom: 5px;
+}
+
+.grid-container {
+  display: grid;
+  border-radius: var(--roundness-xl);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px; /* Adjust the gap between items as needed */
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  padding: 10px; /* Add padding or styling as needed */
+  text-align: center; /* Center the content */
+}

@@ -1,28 +1,17 @@
-import { useState } from 'react';
 import AnimatedDiv from '../components/AnimatedDiv';
-import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import { subDays, toDate } from 'date-fns';
-const yesterday = subDays(new Date(), 1);
-const today = toDate(new Date());
-
+import mockedFacilities from '../../mockups/mockedFacilities.ts';
 const Dashboard = () => {
-  const [selected, setSelected] = useState<Date | undefined>(today);
-
-  // let footer = <p>Please pick a day.</p>;
-  // if (selected) {
-  //   footer = <p>You picked {format(selected, 'PP')}.</p>;
-  // }
-
   return (
     <AnimatedDiv>
-      <DayPicker
-        mode="single"
-        className="rdp"
-        selected={selected}
-        onSelect={setSelected}
-        disabled={{ from: new Date(1970, 1, 1), to: yesterday }}
-      />
+      <h4 className="grid-title">Facilites</h4>
+      <div className="grid-container">
+        {mockedFacilities.map((facility) => (
+          <div className="grid-item" key={facility.id}>
+            {facility.name}
+          </div>
+        ))}
+      </div>
     </AnimatedDiv>
   );
 };
