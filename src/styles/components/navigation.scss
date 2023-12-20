@@ -1,0 +1,11 @@
+.navigation {
+  min-height: 50px;
+  padding: 20px;
+
+  & .list {
+    display: flex;
+    list-style-type: none;
+    gap: 20;
+    justify-content: space-between;
+  }
+}
