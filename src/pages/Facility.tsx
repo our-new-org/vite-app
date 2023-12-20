@@ -1,17 +1,30 @@
-import { useState } from 'react';
 import AnimatedDiv from '../components/AnimatedDiv';
-import { DayPicker } from 'react-day-picker';
-import { subDays, toDate } from 'date-fns';
+import { setHours, startOfDay, setMinutes } from 'date-fns';
 import 'react-day-picker/dist/style.css';
+import SlotPicker from '../components/SlotPicker';
 
-const yesterday = subDays(new Date(), 1);
-const today = toDate(new Date());
+//const yesterday = subDays(new Date(), 1);
 
 const Facility = () => {
-  const [selected, setSelected] = useState<Date | undefined>(today);
+  const today = startOfDay(new Date()); // Set to midnight (00:00)
+  const startTime = setHours(setMinutes(today, 0), 6); // Set to 06:00
+  const endTime = setHours(setMinutes(today, 0), 22); //
 
   return (
     <AnimatedDiv>
+      <SlotPicker
+        facilityName="Laundry"
+        slotDuration={240}
+        startTime={startTime}
+        endTime={endTime}
+      />
+    </AnimatedDiv>
+  );
+};
+
+export default Facility;
+
+/**
       <DayPicker
         mode="single"
         className="rdp"
@@ -19,8 +32,4 @@ const Facility = () => {
         onSelect={setSelected}
         disabled={{ from: new Date(1970, 1, 1), to: yesterday }}
       />
-    </AnimatedDiv>
-  );
-};
-
-export default Facility;
+ */
