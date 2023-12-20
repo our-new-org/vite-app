@@ -1,10 +1,10 @@
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import supabase from "../libs/supabase";
-import { useContext } from "react";
-import StoreContext from "../contexts/Store";
-import AnimatedDiv from "../components/AnimatedDiv";
-import homeImage from "../src/asserts/home.jpg";
+import { Auth } from '@supabase/auth-ui-react';
+import { ThemeSupa } from '@supabase/auth-ui-shared';
+import supabase from '../libs/supabase';
+import { useContext } from 'react';
+import StoreContext from '../contexts/Store';
+import AnimatedDiv from '../components/AnimatedDiv';
+import homeImage from '../assets/home.jpg';
 
 /* const customTheme = {
   default: {
@@ -20,8 +20,8 @@ export default function Home() {
   const { session } = useContext(StoreContext);
 
   const scrollToLogin = () => {
-    const authContainer = document.getElementsByClassName("auth-container")[0];
-    authContainer.scrollIntoView({ behavior: "smooth" });
+    const authContainer = document.getElementsByClassName('auth-container')[0];
+    authContainer.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -30,8 +30,7 @@ export default function Home() {
         <div className="home-container__welcome">
           <button
             onClick={scrollToLogin}
-            className="home-container__welcome__loginButton"
-          >
+            className="home-container__welcome__loginButton">
             Login
           </button>
           <img
@@ -48,15 +47,15 @@ export default function Home() {
               supabaseClient={supabase}
               appearance={{
                 theme: ThemeSupa,
-                className: { container: "auth-container" },
+                className: { container: 'auth-container' },
                 style: {
-                  container: { margin: "8px", color: "white" },
-                  anchor: { color: "#38665F", margin: "10px" },
+                  container: { margin: '8px', color: 'white' },
+                  anchor: { color: '#38665F', margin: '10px' },
                   button: {
-                    backgroundColor: "#38665F",
-                    borderColor: "#5D5C57",
-                    color: "white",
-                    borderRadius: "5px",
+                    backgroundColor: '#38665F',
+                    borderColor: '#5D5C57',
+                    color: 'white',
+                    borderRadius: '5px',
                   },
                 },
               }}
