@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { format, addMinutes } from 'date-fns';
-import { ClockCircleOutlined, RightOutlined } from '@ant-design/icons';
+import { addMinutes } from 'date-fns';
+import Slot from './Slot';
 
 interface SlotPickerProps {
   facilityName: string;
@@ -17,6 +17,10 @@ const SlotPicker: React.FC<SlotPickerProps> = ({
 }) => {
   const [selectedSlot, setSelectedSlot] = useState<Date | null>(null);
 
+  const handleSlotSelect = (slot: Date) => {
+    setSelectedSlot(slot);
+  };
+
   // Create an array of slots within the specified start and end time
   const slots: Date[] = [];
   let currentTime = startTime;
@@ -25,35 +29,18 @@ const SlotPicker: React.FC<SlotPickerProps> = ({
     currentTime = addMinutes(currentTime, slotDuration);
   }
 
-  // Function to handle slot selection
-  const handleSlotSelect = (slot: Date) => {
-    setSelectedSlot(slot);
-    // You can perform additional actions here when a slot is selected
-  };
-
   return (
     <div>
+      <h1 className="facility-title">{facilityName}</h1>
       <ul className="slot-list">
         {slots.map((slot, index) => (
-          <li
+          <Slot
+            slot={slot}
             key={index}
-            className="slot-item"
-            onClick={() => handleSlotSelect(slot)}
-            style={{
-              backgroundColor: selectedSlot === slot ? 'lightblue' : 'white',
-            }}>
-            <div className="slot-item__details">
-              <h5 className="slot-item__details__label">{facilityName} slot</h5>
-              <p className="slot-item__details__content">
-                <ClockCircleOutlined style={{ marginRight: '5px' }} />
-                {`${format(slot, 'HH:mm')} - ${format(
-                  addMinutes(slot, slotDuration),
-                  'HH:mm'
-                )}`}
-              </p>
-            </div>
-            <RightOutlined />
-          </li>
+            slotDuration={slotDuration}
+            handleSlotSelect={handleSlotSelect}
+            selectedSlot={selectedSlot}
+          />
         ))}
       </ul>
     </div>
