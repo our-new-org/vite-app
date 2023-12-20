@@ -7,6 +7,7 @@ type AnimatedDivProps = HTMLMotionProps<'div'> & {
 const AnimatedDiv = ({ children, ...rest }: AnimatedDivProps) => {
   return (
     <motion.div
+      className="animated"
       transition={{ duration: 0.075 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

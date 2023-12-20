@@ -1,20 +1,52 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  font-family: "Montserrat", sans-serif;
-  color: var(--text-color)
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-color);
 }
 
-:root {
+/* 
   --primary-color: #F2F1EB;
   --secondary-color: #D0D3C8;
-  --action-color: #38665F;
+  --action-color: #3c57d6;
+*/
+
+:root {
+  --primary-color: #eff2fa;
+  --secondary-color: #ffffff;
+  --action-color: #38665f;
   --text-color: black;
   --roundness: 5px;
   --roundness-xl: 30px;
+}
+
+.rdp-nav_icon {
+  color: var(--action-color);
+}
+
+.rdp {
+  --rdp-cell-size: 40px; /* Size of the day cells. */
+  --rdp-caption-font-size: 18px; /* Font size for the caption labels. */
+  /* Accent color for the background of selected days. */
+  --rdp-accent-color: var(--action-color) !important;
+  --rdp-background-color: #e7edff; /* Background color for the hovered/focused elements. */
+  /* Accent color for the background of selected days (to use in dark-mode). */
+  --rdp-accent-color-dark: var(--action-color) !important;
+  /* Background color for the hovered/focused elements (to use in dark-mode). */
+  --rdp-background-color-dark: var(--action-color) !important;
+  --rdp-outline: 2px solid var(--rdp-accent-color); /* Outline border for focused elements */
+  --rdp-outline-selected: 3px solid var(--rdp-accent-color); /* Outline border for focused _and_ selected elements */
+  --rdp-selected-color: #fff; /* Color of selected day text */
+}
+
+.animated {
+  margin-top: 30px;
+  padding: 5px;
+  background-color: var(--secondary-color);
+  border-radius: 30px;
 }
 
 body {
