@@ -1,12 +1,7 @@
 import { Session } from '@supabase/supabase-js';
 import { create } from 'zustand';
+import { User } from '../types';
 const API_URL = import.meta.env.VITE_API_URL;
-
-export type User = {
-  id: number;
-  email: string;
-  apartmentNumber: number;
-};
 
 interface AuthStore {
   user: User | null;
