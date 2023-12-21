@@ -18,7 +18,7 @@ import { setSession, useAuthStore } from '../store/authStore';
 
 export default function Home() {
   const session = useAuthStore((state) => state.session);
-  console.log('session: ', session);
+  const { fetchUser } = useAuthStore();
 
   const scrollToLogin = () => {
     const authContainer = document.getElementsByClassName('auth-container')[0];
@@ -28,11 +28,13 @@ export default function Home() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session: sessionIn } }) => {
       setSession(sessionIn);
+      sessionIn && fetchUser(sessionIn);
     });
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, sessionOut) => {
       setSession(sessionOut);
+      sessionOut && fetchUser(sessionOut);
     });
 
     return () => subscription.unsubscribe();
