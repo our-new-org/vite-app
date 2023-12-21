@@ -3,27 +3,10 @@ import { ThemeSupa } from '@supabase/auth-ui-shared';
 import supabase from '../libs/supabase';
 import AnimatedDiv from '../components/AnimatedDiv';
 import homeImage from '../assets/home.jpg';
-import { useEffect } from 'react';
-import { useAuthStore } from '../store/authStore';
+import { useAuth } from '../hooks/useAuth';
 
 export default function Home() {
-  const { session, fetchUser, setSession } = useAuthStore();
-
-  const scrollToLogin = () => {
-    const authContainer = document.getElementsByClassName('auth-container')[0];
-    authContainer.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, supabaseSession) => {
-      setSession(supabaseSession);
-      supabaseSession && fetchUser();
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
+  const { session, scrollToLogin } = useAuth();
 
   return (
     <AnimatedDiv className="home">
@@ -48,7 +31,7 @@ export default function Home() {
               supabaseClient={supabase}
               appearance={{
                 theme: ThemeSupa,
-                className: { container: 'auth-container' },
+                className: { container: 'auth-container login-scroll' },
                 style: {
                   container: { margin: '8px', color: 'white' },
                   anchor: { color: '#38665F', margin: '10px' },
