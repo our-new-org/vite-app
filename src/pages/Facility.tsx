@@ -1,5 +1,4 @@
 import AnimatedDiv from '../components/AnimatedDiv';
-import { setHours, startOfDay, setMinutes } from 'date-fns';
 import 'react-day-picker/dist/style.css';
 import SlotPicker from '../components/SlotPicker';
 import image from '../assets/home.jpg';
@@ -7,6 +6,7 @@ import WeekPicker from '../components/WeekPicker';
 import { useParams } from 'react-router-dom';
 import { useFacilityStore } from '../store/facilityStore';
 import { useEffect } from 'react';
+import { combineDateAndTime } from '../utils';
 //const yesterday = subDays(new Date(), 1);
 
 const Facility = () => {
@@ -18,14 +18,8 @@ const Facility = () => {
     fetchFacility(Number(id));
   }, []);
 
-  const today = startOfDay(new Date()); // Set to midnight (00:00)
-  const startTime = setHours(setMinutes(today, 0), 6); // Set to 06:00
-  const endTime = setHours(setMinutes(today, 0), 22); //
-  console.log(startTime);
-  console.log(endTime);
-
   const showDetailsHandle = (pickedDay: Date) => {
-    console.log(pickedDay.getTime());
+    console.log(pickedDay);
   };
 
   return (
@@ -39,8 +33,8 @@ const Facility = () => {
           <SlotPicker
             facilityName={facility?.name}
             slotDuration={facility?.slotDuration}
-            startTime={startTime}
-            endTime={endTime}
+            startTime={combineDateAndTime(new Date(), facility?.openingHour)}
+            endTime={combineDateAndTime(new Date(), facility?.closingHour)}
           />
         </>
       )}
