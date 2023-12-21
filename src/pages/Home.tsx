@@ -4,11 +4,10 @@ import supabase from '../libs/supabase';
 import AnimatedDiv from '../components/AnimatedDiv';
 import homeImage from '../assets/home.jpg';
 import { useEffect } from 'react';
-import { setSession, useAuthStore } from '../store/authStore';
+import { useAuthStore } from '../store/authStore';
 
 export default function Home() {
-  const { session } = useAuthStore();
-  const { fetchUser } = useAuthStore();
+  const { session, fetchUser, setSession } = useAuthStore();
 
   const scrollToLogin = () => {
     const authContainer = document.getElementsByClassName('auth-container')[0];
@@ -18,9 +17,9 @@ export default function Home() {
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, sessionOut) => {
-      setSession(sessionOut);
-      sessionOut && fetchUser(sessionOut);
+    } = supabase.auth.onAuthStateChange((_event, supabaseSession) => {
+      setSession(supabaseSession);
+      supabaseSession && fetchUser();
     });
 
     return () => subscription.unsubscribe();
