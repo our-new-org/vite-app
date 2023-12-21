@@ -1,151 +1,74 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   format,
-  subMonths,
-  addMonths,
   startOfWeek,
   addDays,
   isSameDay,
-  lastDayOfWeek,
-  getWeek,
-  addWeeks,
   subWeeks,
+  addWeeks,
 } from 'date-fns';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 type WeekPickerProps = {
   showDetailsHandle: (dayStr: Date) => void;
 };
 
-const WeekPicker = ({ showDetailsHandle }: WeekPickerProps) => {
-  const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [currentWeek, setCurrentWeek] = useState(getWeek(currentMonth));
-  const [selectedDate, setSelectedDate] = useState(new Date());
+const WeekPicker: React.FC<WeekPickerProps> = ({ showDetailsHandle }) => {
+  const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
-  const changeMonthHandle = (btnType: 'prev' | 'next') => {
-    if (btnType === 'prev') {
-      setCurrentMonth(subMonths(currentMonth, 1));
-    }
-    if (btnType === 'next') {
-      setCurrentMonth(addMonths(currentMonth, 1));
-    }
+  const changeWeekHandle = (btnType: string) => {
+    setCurrentMonth((prevMonth) =>
+      btnType === 'prev' ? subWeeks(prevMonth, 1) : addWeeks(prevMonth, 1),
+    );
   };
 
-  const changeWeekHandle = (btnType: 'prev' | 'next') => {
-    //console.log("current week", currentWeek);
-    if (btnType === 'prev') {
-      //console.log(subWeeks(currentMonth, 1));
-      setCurrentMonth(subWeeks(currentMonth, 1));
-      setCurrentWeek(getWeek(subWeeks(currentMonth, 1)));
-    }
-    if (btnType === 'next') {
-      //console.log(addWeeks(currentMonth, 1));
-      setCurrentMonth(addWeeks(currentMonth, 1));
-      setCurrentWeek(getWeek(addWeeks(currentMonth, 1)));
-    }
-  };
-
-  const onDateClickHandle = (day: Date, dayStr: string) => {
+  const onDateClickHandle = (day: Date) => {
     setSelectedDate(day);
     showDetailsHandle(day);
   };
 
-  const renderHeader = () => {
-    const dateFormat = 'MMM yyyy';
-    // console.log("selected day", selectedDate);
-    return (
-      <div className="header row flex-middle">
-        <div className="col col-start">
-          {/* <div className="icon" onClick={() => changeMonthHandle("prev")}>
-            prev month
-          </div> */}
-        </div>
-        <div className="col col-center">
-          <span>{format(currentMonth, dateFormat)}</span>
-        </div>
-        <div className="col col-end">
-          {/* <div className="icon" onClick={() => changeMonthHandle("next")}>next month</div> */}
-        </div>
-      </div>
-    );
-  };
-  const renderDays = () => {
-    const dateFormat = 'EEE';
-    const days = [];
-    const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
-    for (let i = 0; i < 7; i++) {
-      days.push(
-        <div className="col col-center" key={i}>
-          {format(addDays(startDate, i), dateFormat)}
-        </div>,
-      );
-    }
-    return <div className="days row">{days}</div>;
-  };
-  const renderCells = () => {
-    const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
-    const endDate = lastDayOfWeek(currentMonth, { weekStartsOn: 1 });
-    const dateFormat = 'd';
-    const rows = [];
-    let days = [];
-    let day = startDate;
-    let formattedDate = '';
-    while (day <= endDate) {
-      for (let i = 0; i < 7; i++) {
-        formattedDate = format(day, dateFormat);
-        const cloneDay = day;
-        days.push(
-          <div
-            className={`col cell ${
-              isSameDay(day, new Date())
-                ? 'today'
-                : isSameDay(day, selectedDate)
-                ? 'selected'
-                : ''
-            }`}
-            key={+cloneDay}
-            onClick={() => {
-              const dayStr = format(cloneDay, 'ccc dd MMM yy');
-              onDateClickHandle(cloneDay, dayStr);
-            }}>
-            <span className="number">{formattedDate}</span>
-            <span className="bg">{formattedDate}</span>
-          </div>,
-        );
-        day = addDays(day, 1);
-      }
+  const weekStart = startOfWeek(currentMonth, { weekStartsOn: 1 });
 
-      rows.push(
-        <div className="row" key={+day}>
-          {days}
-        </div>,
-      );
-      days = [];
-    }
-    return <div className="body">{rows}</div>;
-  };
-  const renderFooter = () => {
-    return (
-      <div className="header row flex-middle">
-        <div className="col col-start">
-          <div className="icon" onClick={() => changeWeekHandle('prev')}>
-            prev week
-          </div>
+  // Create an array of dates representing the current week
+  const weekDays = [];
+  for (let i = 0; i < 7; i++) {
+    const day = addDays(weekStart, i);
+    weekDays.push(day);
+  }
+
+  const formattedWeek = format(currentMonth, 'w');
+
+  return (
+    <>
+      <h1 className="week-picker__title">Select date</h1>
+      <div className="week-picker">
+        <div className="select-week">
+          <LeftOutlined
+            className="select-week__icon"
+            onClick={() => changeWeekHandle('prev')}
+          />
+          <h6 className="select-week__label">Week {formattedWeek}</h6>
+          <RightOutlined
+            className="select-week__icon"
+            onClick={() => changeWeekHandle('next')}
+          />
         </div>
-        <div>{currentWeek}</div>
-        <div className="col col-end" onClick={() => changeWeekHandle('next')}>
-          <div className="icon">next week</div>
+        <div className="day-picker">
+          {weekDays.map((day) => (
+            <div
+              className={`day-picker__item ${
+                isSameDay(day, selectedDate) ? 'selected' : ''
+              }`}
+              key={day.toString()}
+              onClick={() => onDateClickHandle(day)}>
+              <h6>{format(day, 'EEE')}</h6>
+              <span>{format(day, 'd')}</span>
+            </div>
+          ))}
         </div>
       </div>
-    );
-  };
-  return (
-    <div className="calendar">
-      {/* {renderHeader()} */}
-      {renderDays()}
-      {renderCells()}
-      {renderFooter()}
-    </div>
+    </>
   );
 };
 
