@@ -3,7 +3,7 @@ import { useAuthStore } from '../store/authStore';
 import supabase from '../libs/supabase';
 
 export const useAuth = () => {
-  const { session, fetchUser, setSession } = useAuthStore();
+  const { fetchUser, setSession } = useAuthStore();
 
   const scrollToLogin = () => {
     const elementToScrollTo = document.querySelector('.login-scroll')!;
@@ -21,5 +21,5 @@ export const useAuth = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  return { session, scrollToLogin };
+  return { scrollToLogin };
 };

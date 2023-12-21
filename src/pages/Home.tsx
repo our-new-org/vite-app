@@ -4,9 +4,11 @@ import supabase from '../libs/supabase';
 import AnimatedDiv from '../components/AnimatedDiv';
 import homeImage from '../assets/home.jpg';
 import { useAuth } from '../hooks/useAuth';
+import { useAuthStore } from '../store/authStore';
 
 export default function Home() {
-  const { session, scrollToLogin } = useAuth();
+  const { session } = useAuthStore();
+  const { scrollToLogin } = useAuth();
 
   return (
     <AnimatedDiv className="home">
