@@ -1,0 +1,35 @@
+.week-calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .week-calendar__content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .week-calendar__arrow-icon {
+    font-size: 30px;
+  }
+  
+  .week-calendar__week-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  
+  .week-calendar__weekdays {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    flex-flow: row wrap;
+  }
+  
+  .custom-li-class {
+    display: flex;
+    white-space: nowrap;
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
