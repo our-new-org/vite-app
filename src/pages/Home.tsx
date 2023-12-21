@@ -1,10 +1,10 @@
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import supabase from '../libs/supabase';
-import { useContext } from 'react';
-import StoreContext from '../contexts/Store';
 import AnimatedDiv from '../components/AnimatedDiv';
 import homeImage from '../assets/home.jpg';
+import { useEffect } from 'react';
+import { setSession, useAuthStore } from '../store/authStore';
 
 /* const customTheme = {
   default: {
@@ -17,12 +17,26 @@ import homeImage from '../assets/home.jpg';
 } */
 
 export default function Home() {
-  const { session } = useContext(StoreContext);
+  const session = useAuthStore((state) => state.session);
+  console.log('session: ', session);
 
   const scrollToLogin = () => {
     const authContainer = document.getElementsByClassName('auth-container')[0];
     authContainer.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session: sessionIn } }) => {
+      setSession(sessionIn);
+    });
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, sessionOut) => {
+      setSession(sessionOut);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   return (
     <AnimatedDiv className="home">

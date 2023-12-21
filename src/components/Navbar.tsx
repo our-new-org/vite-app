@@ -1,11 +1,10 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import StoreContext from '../contexts/Store';
 import supabase from '../libs/supabase';
 import { UserOutlined } from '@ant-design/icons';
+import { useAuthStore } from '../store/authStore';
 
 const Navbar = () => {
-  const { session } = useContext(StoreContext);
+  const session = useAuthStore((state) => state.session);
 
   return (
     <nav className="navigation">
