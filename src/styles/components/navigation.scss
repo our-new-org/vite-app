@@ -1,11 +1,16 @@
 .navigation {
   min-height: 50px;
   padding: 20px;
+  background-color: var(--secondary-color);
 
   & .list {
     display: flex;
     list-style-type: none;
     gap: 20;
     justify-content: space-between;
+  }
+
+  & .user-icon {
+    color: var(--action-color);
   }
 }

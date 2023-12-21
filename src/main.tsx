@@ -4,12 +4,16 @@ import { StoreContextProvider } from './contexts/Store.tsx';
 import { BrowserRouter } from 'react-router-dom';
 import AnimatedRoutes from './components/AnimatedRoutes.tsx';
 import Navbar from './components/Navbar.tsx';
+import { ConfigProvider } from 'antd';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <StoreContextProvider>
-    <BrowserRouter>
-      <Navbar />
-      <AnimatedRoutes />
-    </BrowserRouter>
-  </StoreContextProvider>
+  <ConfigProvider
+    theme={{ token: { colorPrimary: '#38665f', borderRadius: 5 } }}>
+    <StoreContextProvider>
+      <BrowserRouter>
+        <Navbar />
+        <AnimatedRoutes />
+      </BrowserRouter>
+    </StoreContextProvider>
+  </ConfigProvider>
 );
