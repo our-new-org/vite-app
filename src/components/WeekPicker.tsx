@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {
   format,
   startOfWeek,
@@ -7,13 +8,8 @@ import {
   subWeeks,
   addWeeks,
 } from 'date-fns';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
-type WeekPickerProps = {
-  showDetailsHandle: (dayStr: Date) => void;
-};
-
-const WeekPicker: React.FC<WeekPickerProps> = ({ showDetailsHandle }) => {
+const WeekPicker = () => {
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
@@ -21,11 +17,6 @@ const WeekPicker: React.FC<WeekPickerProps> = ({ showDetailsHandle }) => {
     setCurrentMonth((prevMonth) =>
       btnType === 'prev' ? subWeeks(prevMonth, 1) : addWeeks(prevMonth, 1),
     );
-  };
-
-  const onDateClickHandle = (day: Date) => {
-    setSelectedDate(day);
-    showDetailsHandle(day);
   };
 
   const weekStart = startOfWeek(currentMonth, { weekStartsOn: 1 });
@@ -61,7 +52,7 @@ const WeekPicker: React.FC<WeekPickerProps> = ({ showDetailsHandle }) => {
                 isSameDay(day, selectedDate) ? 'selected' : ''
               }`}
               key={day.toString()}
-              onClick={() => onDateClickHandle(day)}>
+              onClick={() => setSelectedDate(day)}>
               <h6>{format(day, 'EEE')}</h6>
               <span>{format(day, 'd')}</span>
             </div>

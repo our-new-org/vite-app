@@ -2,20 +2,13 @@ import React, { useState } from 'react';
 import { addMinutes } from 'date-fns';
 import Slot from './Slot';
 import { Button } from 'antd';
+import { useFacilityStore } from '../store/facilityStore';
+import { combineDateAndTime } from '../utils';
 
-interface SlotPickerProps {
-  facilityName: string;
-  slotDuration: number; // Slot duration in minutes
-  startTime: Date; // Start time for slots
-  endTime: Date; // End time for slots
-}
+interface SlotPickerProps {}
 
-const SlotPicker: React.FC<SlotPickerProps> = ({
-  facilityName,
-  slotDuration,
-  startTime,
-  endTime,
-}) => {
+const SlotPicker: React.FC<SlotPickerProps> = () => {
+  const { facility } = useFacilityStore();
   const [selectedSlot, setSelectedSlot] = useState<Date | null>(null);
 
   const handleSlotSelect = (slot: Date) => {
@@ -24,21 +17,22 @@ const SlotPicker: React.FC<SlotPickerProps> = ({
 
   // Create an array of slots within the specified start and end time
   const slots: Date[] = [];
-  let currentTime = startTime;
+  let currentTime = combineDateAndTime(new Date(), facility!.openingHour);
+  const endTime = combineDateAndTime(new Date(), facility!.closingHour);
   while (currentTime < endTime) {
     slots.push(currentTime);
-    currentTime = addMinutes(currentTime, slotDuration);
+    currentTime = addMinutes(currentTime, facility!.slotDuration);
   }
 
   return (
     <section className="facility">
-      <h1 className="facility__title">{facilityName}</h1>
+      <h1 className="facility__title">Available Slots</h1>
       <ul className="slot-list">
-        {slots.map((slot, index) => (
+        {slots?.map((slot, index) => (
           <Slot
             slot={slot}
             key={index}
-            slotDuration={slotDuration}
+            slotDuration={facility!.slotDuration}
             handleSlotSelect={handleSlotSelect}
             selectedSlot={selectedSlot}
           />
