@@ -6,18 +6,8 @@ import homeImage from '../assets/home.jpg';
 import { useEffect } from 'react';
 import { setSession, useAuthStore } from '../store/authStore';
 
-/* const customTheme = {
-  default: {
-    colors: {
-      brand: 'hsl(153 60.0% 53.0%)',
-      brandAccent: 'hsl(154 54.8% 45.1%)',
-      brandButtonText: '#514438',
-    },
-  },
-} */
-
 export default function Home() {
-  const session = useAuthStore((state) => state.session);
+  const { session } = useAuthStore();
   const { fetchUser } = useAuthStore();
 
   const scrollToLogin = () => {
@@ -26,10 +16,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session: sessionIn } }) => {
-      setSession(sessionIn);
-      sessionIn && fetchUser(sessionIn);
-    });
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, sessionOut) => {
