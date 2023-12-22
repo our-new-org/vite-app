@@ -8,11 +8,11 @@ import {
   subWeeks,
   addWeeks,
 } from 'date-fns';
-import { datePickerStore } from '../store/DatePickerStore';
+import { useDatePickerStore } from '../store/DatePickerStore';
 
 const WeekPicker = () => {
   const { selectedDate, setSelectedDate, setCurrentMonth, currentMonth } =
-    datePickerStore();
+    useDatePickerStore();
 
   const changeWeekHandle = (btnType: string) => {
     const selectedMonth =

@@ -1,24 +1,53 @@
-import React, { useState } from 'react';
 import { addMinutes } from 'date-fns';
 import Slot from './Slot';
 import { Button } from 'antd';
 import { useFacilityStore } from '../store/facilityStore';
 import { combineDateAndTime } from '../utils';
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../store/authStore';
+import { useDatePickerStore } from '../store/DatePickerStore';
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface SlotPickerProps {}
 
 const SlotPicker: React.FC<SlotPickerProps> = () => {
+  const { user } = useAuthStore();
+  const navigate = useNavigate();
   const { facility } = useFacilityStore();
-  const [selectedSlot, setSelectedSlot] = useState<Date | null>(null);
+  const { setSelectedSlot, selectedSlot, selectedDate } = useDatePickerStore();
 
   const handleSlotSelect = (slot: Date) => {
     setSelectedSlot(slot);
+    console.log(slot);
+  };
+
+  const handleBooking = async () => {
+    try {
+      const response = await fetch(`${API_URL}/bookings`, {
+        method: 'POST',
+        body: JSON.stringify({
+          userId: user?.id,
+          facilityId: facility?.id,
+          date: selectedSlot,
+          startTime: null,
+          endTime: null,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const booking = await response.json();
+      console.log(booking);
+      navigate('/vite-app/bookings');
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   // Create an array of slots within the specified start and end time
   const slots: Date[] = [];
-  let currentTime = combineDateAndTime(new Date(), facility!.openingHour);
-  const endTime = combineDateAndTime(new Date(), facility!.closingHour);
+  let currentTime = combineDateAndTime(selectedDate, facility!.openingHour);
+  const endTime = combineDateAndTime(selectedDate, facility!.closingHour);
   while (currentTime < endTime) {
     slots.push(currentTime);
     currentTime = addMinutes(currentTime, facility!.slotDuration);
@@ -38,7 +67,7 @@ const SlotPicker: React.FC<SlotPickerProps> = () => {
           />
         ))}
       </ul>
-      <Button type="primary" block size="large">
+      <Button type="primary" block size="large" onClick={handleBooking}>
         Book slot
       </Button>
     </section>
