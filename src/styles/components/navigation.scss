@@ -6,11 +6,28 @@
   justify-content: space-between;
 
   & .user-icon {
-    color: var(--action-color);
+    color: var(--action-color-hover);
   }
-
 }
 
 .menu-list {
   list-style-type: none;
+
+  .menu-list__item {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .menu-list__link {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--action-color);
+    }
+  }
 }
