@@ -8,8 +8,7 @@ import { useEffect } from 'react';
 
 const Facility = () => {
   const { id } = useParams();
-  const { fetchFacility } = useFacilityStore();
-  const facility = useFacilityStore((state) => state.facility);
+  const { fetchFacility, facility } = useFacilityStore();
 
   useEffect(() => {
     fetchFacility(Number(id));

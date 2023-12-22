@@ -14,6 +14,7 @@ const Booking = () => {
       fetchBookingByUser(user.id); // Assuming user.id is the ID of the logged-in user
     }
   }, [user, fetchBookingByUser]);
+
   return (
     <div>
       <h1>Booking</h1>
