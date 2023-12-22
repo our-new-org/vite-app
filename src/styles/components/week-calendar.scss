@@ -1,138 +1,68 @@
-  /* Calendar */
+.week-picker__title {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
 
-.calendar {
-    display: block;
-    position: relative;
-    width: 100%;
-    background: var(--neutral-color);
-    border: 1px solid red;
-  }
-  
-  .calendar .header {
+.week-picker {
+  padding: 20px;
+  padding-top: 0px;
+  display: block;
+  position: relative;
+  width: 100%;
+
+  .select-week {
+    background-color: var(--secondary-color);
+    border-top-right-radius: var(--roundness);
+    border-top-left-radius: var(--roundness);
+    padding: 10px;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 115%;
-    padding: 1.5em 0;
-    border-bottom: 1px solid black;
     text-align: center;
     display: flex;
     justify-content: space-between;
+
+    .select-week__label {
+      display: flex;
+      align-items: center;
+    }
+
+    .select-week__icon {
+      font-size: 1.5rem;
+      display: flex;
+      color: var(--action-color);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
-  
-  .calendar .header .icon {
-    cursor: pointer;
-    transition: 0.15s ease-out;
-    border-bottom: 1px solid rgb(104, 194, 205);
-  }
-  
-  .calendar .header .icon:hover {
-    /*transform: scale(1.75);*/
-    transition: 0.25s ease-out;
-    color: var(--main-color);
-  }
-  
-  .calendar .header .icon:first-of-type {
-    margin-left: 1em;
-  }
-  
-  .calendar .header .icon:last-of-type {
-    margin-right: 1em;
-  }
-  
-  .calendar .days {
-    text-transform: uppercase;
-    font-weight: 400;
-    color: var(--text-color-light);
-    font-size: 70%;
-    padding: 0.75em 0;
+
+  .day-picker {
+    padding: 10px;
+    border-top: 2px solid var(--primary-color);
     display: flex;
-    justify-content: space-evenly;
-    border-bottom: 1px solid orangered;
+    background-color: var(--secondary-color);
+    border-bottom-right-radius: var(--roundness);
+    border-bottom-left-radius: var(--roundness);
+    justify-content: space-between;
+    .day-picker__item {
+      font-weight: 500;
+      flex-direction: column;
+      display: flex;
+      padding: 8px;
+      border-radius: var(--roundness);
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .selected {
+      color: var(--secondary-color);
+      background-color: var(--action-color);
+    }
   }
-  
-  .calendar .body .cell {
-    position: relative;
-    height: 4em;
-    border-right: 1px solid yellowgreen;
-    
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--neutral-color);
-    transition: 0.25s ease-out;
-    font-size: 1.5em;
-    
-  }
-  
-  .calendar .body .cell:hover {
-    background: var(--bg-color);
-    transition: 0.5s ease-out;
-  }
-  
-  .calendar .body .selected {
-    border-left: 10px solid transparent;
-    border-image: linear-gradient(45deg, #1a8fff 0%, #53cbf1 40%);
-    border-image-slice: 1;
-    
-  }
-  .calendar .body .today {
-    border-left: 10px solid transparent;
-    border-image: linear-gradient(45deg, #ff1a79 0%, #eb82b3 40%);
-    border-image-slice: 1;
-  }
-  .calendar .body .row {
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-evenly;
-  }
-  
-  /* .calendar .body .row:last-child {
-    border-bottom: none;
-  } */
-  
-  .calendar .body .cell:last-child {
-    border-right: none;
-    
-  }
-  
-  .calendar .body .cell .number {
-    position: absolute;
-    font-size: 82.5%;
-    line-height: 1;
-    top: 0.75em;
-    right: 0.75em;
-    font-weight: 700;
-  }
-  
-  .calendar .body .disabled {
-    color: var(--text-color-light);
-    pointer-events: none;
-  }
-  
-  .calendar .body .cell .bg {
-    font-weight: 700;
-    line-height: 1;
-    color: var(--main-color);
-    opacity: 0;
-    font-size: 8em;
-    position: absolute;
-    top: -0.2em;
-    right: -0.05em;
-    transition: 0.25s ease-out;
-    letter-spacing: -0.07em;
-  }
-  
-  .calendar .body .cell:hover .bg,
-  .calendar .body .selected .bg {
-    opacity: 0.05;
-    transition: 0.5s ease-in;
-  }
-  .calendar .body .cell.today .bg {
-    color: #ff1a79;
-    opacity: 0.05;
-  }
-  
-  .calendar .body .col {
-    flex-grow: 0;
-    flex-basis: calc(100% / 7);
-    width: calc(100% / 7);
-  }
+}

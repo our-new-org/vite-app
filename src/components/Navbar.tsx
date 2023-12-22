@@ -13,7 +13,7 @@ const Navbar = () => {
         <span>
           <UserOutlined className="user-icon" />
         </span>
-        {false && (
+        {true && (
           <>
             <li>
               <Link to={'/vite-app/'}>Home</Link>

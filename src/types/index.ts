@@ -11,8 +11,8 @@ export type Facility = {
   capacity: number;
   image: string;
   slotDuration: number;
-  openingTime: string;
-  closingTime: string;
+  openingHour: number;
+  closingHour: number;
   bookings: Booking[];
 };
 
@@ -20,9 +20,9 @@ export type Booking = {
   id: number;
   userId: number;
   facilityId: number;
-  date: string;
-  startTime: string;
-  endTime: string;
+  date: Date;
+  startTime: Date;
+  endTime: Date;
   createdAt: Date;
   updatedAt: Date;
 

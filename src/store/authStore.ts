@@ -5,25 +5,25 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 interface AuthStore {
   user: User | null;
-  fetchUser: (session: Session) => void;
+  fetchUser: () => void;
   session: Session | null;
+  setSession: (session: Session | null) => void;
 }
 
-export const useAuthStore = create<AuthStore>((set) => ({
+export const useAuthStore = create<AuthStore>((set, get) => ({
   user: null,
   session: null,
-  fetchUser: async (session: Session) => {
+  setSession: (session: Session | null) => set({ session }),
+  fetchUser: async () => {
     try {
-      const response = await fetch(`${API_URL}/users/${session.user.email}`);
+      const response = await fetch(
+        `${API_URL}/users/${get().session?.user.email}`,
+      );
       const user = await response.json();
-      console.log('found this user', user);
+      console.log('Logged in user: ', user);
       set({ user });
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   },
 }));
-
-export function setSession(session: Session | null) {
-  useAuthStore.setState({ session });
-}
