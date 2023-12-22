@@ -1,7 +1,7 @@
 import { MenuOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import MenuDrawer from './MenuDrawer';
-
+import logo from '../assets/logo.png';
 const Navbar = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
 
@@ -15,7 +15,9 @@ const Navbar = () => {
 
   return (
     <nav className="navigation">
-      <span>logo</span>
+      <span>
+        <img src={logo} alt="log" height={30} width={70} />
+      </span>
       <span>
         <MenuOutlined className="user-icon" onClick={showDrawer} />
       </span>

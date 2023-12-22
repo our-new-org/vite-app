@@ -7,7 +7,7 @@ import { ConfigProvider } from 'antd';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ConfigProvider
-    theme={{ token: { colorPrimary: '#38665f', borderRadius: 5 } }}>
+    theme={{ token: { colorPrimary: '#e99ea9', borderRadius: 5 } }}>
     <BrowserRouter>
       <Navbar />
       <AnimatedRoutes />
