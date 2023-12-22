@@ -11,6 +11,10 @@ type MenuDrawerProps = {
 const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
   const session = useAuthStore((state) => state.session);
 
+  const handleLinkClick = () => {
+    onClose();
+  };
+
   return (
     <Drawer
       title="Basic Drawer"
@@ -19,14 +23,23 @@ const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
       open={visible}>
       <ul className="menu-list">
         <li>
-          <Link to={'/vite-app/'}>Home</Link>
+          <Link to={'/vite-app/'} onClick={handleLinkClick}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to={'/vite-app/Dashboard'}>Dashboard</Link>
+          <Link to={'/vite-app/Dashboard'} onClick={handleLinkClick}>
+            Dashboard
+          </Link>
         </li>
         {session && (
           <li>
-            <Link to={'/vite-app/'} onClick={() => supabase.auth.signOut()}>
+            <Link
+              to={'/vite-app/'}
+              onClick={() => {
+                supabase.auth.signOut();
+                handleLinkClick();
+              }}>
               Sign out
             </Link>
           </li>
