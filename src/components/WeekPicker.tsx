@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {
   format,
@@ -8,16 +8,24 @@ import {
   subWeeks,
   addWeeks,
 } from 'date-fns';
+import { useDatePickerStore } from '../store/DatePickerStore';
 
 const WeekPicker = () => {
-  const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const { selectedDate, setSelectedDate, setCurrentMonth, currentMonth } =
+    useDatePickerStore();
 
   const changeWeekHandle = (btnType: string) => {
-    setCurrentMonth((prevMonth) =>
-      btnType === 'prev' ? subWeeks(prevMonth, 1) : addWeeks(prevMonth, 1),
-    );
+    const selectedMonth =
+      btnType === 'prev'
+        ? subWeeks(currentMonth, 1)
+        : addWeeks(currentMonth, 1);
+
+    setCurrentMonth(selectedMonth);
   };
+
+  useEffect(() => {
+    console.log(selectedDate);
+  }, [selectedDate]);
 
   const weekStart = startOfWeek(currentMonth, { weekStartsOn: 1 });
 

@@ -14,12 +14,17 @@
   --secondary-color: #D0D3C8;
   --action-color: #3c57d6;
 */
-
+/**
+#bf8c93
+#957b7d
+#6b6a68
+*/
 :root {
   --primary-color: #eff2fa;
   --secondary-color: #ffffff;
-  --action-color: #38665f;
-  --text-color: black;
+  --action-color: #e99ea9;
+  --text-color: #6b6a68;
+  --action-color-hover: tomato;
   --roundness: 5px;
   --roundness-xl: 30px;
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);

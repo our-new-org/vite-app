@@ -1,36 +1,28 @@
-import { Link } from 'react-router-dom';
-import supabase from '../libs/supabase';
-import { UserOutlined } from '@ant-design/icons';
-import { useAuthStore } from '../store/authStore';
-
+import { MenuOutlined } from '@ant-design/icons';
+import { useState } from 'react';
+import MenuDrawer from './MenuDrawer';
+import logo from '../assets/logo.png';
 const Navbar = () => {
-  const session = useAuthStore((state) => state.session);
+  const [drawerVisible, setDrawerVisible] = useState(false);
+
+  const showDrawer = () => {
+    setDrawerVisible(true);
+  };
+
+  const onCloseDrawer = () => {
+    setDrawerVisible(false);
+  };
 
   return (
     <nav className="navigation">
-      <ul className="list">
-        <span>logo</span>
-        <span>
-          <UserOutlined className="user-icon" />
-        </span>
-        {true && (
-          <>
-            <li>
-              <Link to={'/vite-app/'}>Home</Link>
-            </li>
-            <li>
-              <Link to={'/vite-app/Dashboard'}>Dashboard</Link>
-            </li>
-          </>
-        )}
-        {session && (
-          <li>
-            <Link to={'/vite-app/'} onClick={() => supabase.auth.signOut()}>
-              Sign out
-            </Link>
-          </li>
-        )}
-      </ul>
+      <span>
+        <img src={logo} alt="log" height={30} width={70} />
+      </span>
+      <span>
+        <MenuOutlined className="user-icon" onClick={showDrawer} />
+      </span>
+
+      <MenuDrawer visible={drawerVisible} onClose={onCloseDrawer} />
     </nav>
   );
 };
