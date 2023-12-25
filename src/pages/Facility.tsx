@@ -39,7 +39,7 @@ const Facility = () => {
       });
       const booking = await response.json();
       console.log(booking);
-      navigate('/vite-app/bookings');
+      navigate('/bookings');
     } catch (error) {
       console.error('Error fetching data:', error);
     }

@@ -9,6 +9,7 @@ const ActiveBookings = () => {
       <h6>Active Bookings</h6>
       {mockedBookings.map((booking) => (
         <Card
+          key={booking.id}
           size="small"
           title={
             <div className="booking__title">

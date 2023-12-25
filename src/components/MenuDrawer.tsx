@@ -23,16 +23,13 @@ const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
       open={visible}>
       <ul className="menu-list">
         <li className="menu-list__item">
-          <Link
-            to={'/vite-app/'}
-            onClick={handleLinkClick}
-            className="menu-list__link">
+          <Link to={'/'} onClick={handleLinkClick} className="menu-list__link">
             Home
           </Link>
         </li>
         <li className="menu-list__item">
           <Link
-            to={'/vite-app/Dashboard'}
+            to={'/dashboard'}
             onClick={handleLinkClick}
             className="menu-list__link">
             Dashboard
@@ -42,7 +39,7 @@ const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
           <>
             <li className="menu-list__item">
               <Link
-                to={'/vite-app/bookings'}
+                to={'/bookings'}
                 onClick={handleLinkClick}
                 className="menu-list__link">
                 All bookings
@@ -50,7 +47,7 @@ const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
             </li>
             <li className="menu-list__item">
               <Link
-                to={'/vite-app/'}
+                to={'/'}
                 onClick={() => {
                   supabase.auth.signOut();
                   handleLinkClick();
