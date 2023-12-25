@@ -20,9 +20,9 @@ export type Booking = {
   id: number;
   userId: number;
   facilityId: number;
-  date: Date;
-  startTime: Date;
-  endTime: Date;
+  date: string;
+  startTime: string;
+  endTime: string;
   createdAt: Date;
   updatedAt: Date;
 

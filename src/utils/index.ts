@@ -6,6 +6,7 @@ import {
   isToday,
   isTomorrow,
 } from 'date-fns';
+import { Booking } from '../types';
 
 export const combineDateAndTime = (baseDate: Date, hours: number) => {
   const minutes = 0;
@@ -48,4 +49,11 @@ export function formatDate(dateString: string): string {
 export function getDayOfWeek(dateString: string): string {
   const date = parseISO(dateString);
   return format(date, 'EEEE');
+}
+
+export function isSlotBooked(slot: Date, bookings: Booking[]) {
+  return bookings.some(
+    (booking) =>
+      new Date(slot).getTime() === new Date(booking.startTime).getTime(),
+  );
 }

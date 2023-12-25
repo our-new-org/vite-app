@@ -1,7 +1,7 @@
 import { addMinutes } from 'date-fns';
 import Slot from './Slot';
 import { useFacilityStore } from '../store/facilityStore';
-import { combineDateAndTime } from '../utils';
+import { combineDateAndTime, isSlotBooked } from '../utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useDatePickerStore } from '../store/datePickerStore';
 
@@ -33,6 +33,7 @@ const SlotPicker: React.FC<SlotPickerProps> = () => {
           <ul className="slot-list">
             {slots?.map((slot, index) => (
               <Slot
+                disabled={isSlotBooked(slot, facility!.bookings)}
                 slot={slot}
                 key={index}
                 slotDuration={facility!.slotDuration}

@@ -9,6 +9,7 @@ import { Button } from 'antd';
 import { useAuthStore } from '../store/authStore';
 import { useDatePickerStore } from '../store/datePickerStore';
 import { addDurationToDate } from '../utils';
+import { formatISO } from 'date-fns';
 const API_URL = import.meta.env.VITE_API_URL;
 
 const Facility = () => {
@@ -29,9 +30,11 @@ const Facility = () => {
         body: JSON.stringify({
           userId: user?.id,
           facilityId: facility?.id,
-          date: selectedDate,
-          startTime: selectedSlot,
-          endTime: addDurationToDate(selectedSlot!, facility!.slotDuration),
+          date: formatISO(selectedDate),
+          startTime: formatISO(selectedSlot!),
+          endTime: formatISO(
+            addDurationToDate(selectedSlot!, facility!.slotDuration),
+          ),
         }),
         headers: {
           'Content-Type': 'application/json',
