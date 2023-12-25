@@ -1,10 +1,10 @@
 import AnimatedDiv from '../components/AnimatedDiv';
+import FacilityCard from '../components/FacilityCard';
 import { useFacilityStore } from '../store/facilityStore';
 import { useEffect } from 'react';
-import AllFacilities from '../components/AllFacilities';
 
 const Facilities = () => {
-  const { fetchFacilities } = useFacilityStore();
+  const { fetchFacilities, facilities } = useFacilityStore();
 
   useEffect(() => {
     fetchFacilities();
@@ -12,7 +12,12 @@ const Facilities = () => {
 
   return (
     <AnimatedDiv>
-      <AllFacilities />
+      <h4 className="grid-title">Facilites</h4>
+      <div className="grid-container">
+        {facilities?.map((facility) => (
+          <FacilityCard key={facility.id} facility={facility} />
+        ))}
+      </div>
     </AnimatedDiv>
   );
 };
