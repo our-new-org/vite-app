@@ -1,29 +1,28 @@
-import { addMinutes } from 'date-fns';
+// SlotPicker component
+import React from 'react';
 import Slot from './Slot';
 import { useFacilityStore } from '../store/facilityStore';
-import { combineDateAndTime, isSlotBooked } from '../utils';
-import { AnimatePresence, motion } from 'framer-motion';
 import { useDatePickerStore } from '../store/datePickerStore';
+import { isSlotBooked } from '../utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import useSlots from '../hooks/useSlots'; // Custom hook for slot generation
 
-interface SlotPickerProps {}
-
-const SlotPicker: React.FC<SlotPickerProps> = () => {
+const SlotPicker: React.FC = () => {
+  // Fetching global state from Zustand stores
   const { facility } = useFacilityStore();
-  const { setSelectedSlot, selectedSlot, selectedDate } = useDatePickerStore();
+  const { selectedDate, selectedSlot, setSelectedSlot } = useDatePickerStore();
 
-  // Create an array of slots within the specified start and end time
-  const slots: Date[] = [];
-  let currentTime = combineDateAndTime(selectedDate, facility!.openingHour);
-  const endTime = combineDateAndTime(selectedDate, facility!.closingHour);
-  while (currentTime < endTime) {
-    slots.push(currentTime);
-    currentTime = addMinutes(currentTime, facility!.slotDuration);
+  // Using a custom hook for slots calculation
+  const slots = useSlots(selectedDate, facility);
+
+  if (!facility) {
+    return <div>Loading facility data...</div>;
   }
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        key={selectedDate.getTime()} // UNIX date
+        key={selectedDate.getTime()}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -31,18 +30,14 @@ const SlotPicker: React.FC<SlotPickerProps> = () => {
         <section className="facility">
           <h1 className="facility__title">Available Slots</h1>
           <ul className="slot-list">
-            {slots?.map((slot, index) => (
+            {slots.map((slot) => (
               <Slot
-                disabled={isSlotBooked(slot, facility!.bookings)}
+                key={slot.getTime()}
                 slot={slot}
-                key={index}
-                slotDuration={facility!.slotDuration}
-                handleSlotSelect={(slot) => {
-                  slot.setSeconds(0);
-                  slot.setMilliseconds(0);
-                  setSelectedSlot(slot);
-                }}
+                disabled={isSlotBooked(slot, facility.bookings)}
+                slotDuration={facility.slotDuration}
                 selectedSlot={selectedSlot}
+                handleSlotSelect={() => setSelectedSlot(slot)}
               />
             ))}
           </ul>

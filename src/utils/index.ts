@@ -8,12 +8,8 @@ import {
 } from 'date-fns';
 import { Booking } from '../types';
 
-export const combineDateAndTime = (baseDate: Date, hours: number) => {
-  const minutes = 0;
-  const formattedDate = setMinutes(setHours(baseDate, hours), minutes);
-  formattedDate.setSeconds(0);
-  formattedDate.setMilliseconds(0);
-  return formattedDate;
+export const combineDateAndTime = (baseDate: Date, hours: number): Date => {
+  return setMinutes(setHours(baseDate, hours), 0);
 };
 
 export const addDurationToDate = (inputDate: Date, slotDuration: number) => {

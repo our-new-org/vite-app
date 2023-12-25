@@ -1,77 +1,48 @@
+import { useEffect } from 'react';
 import AnimatedDiv from '../components/AnimatedDiv';
 import 'react-day-picker/dist/style.css';
 import SlotPicker from '../components/SlotPicker';
 import WeekPicker from '../components/WeekPicker';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useFacilityStore } from '../store/facilityStore';
-import { useEffect } from 'react';
 import { Button } from 'antd';
-import { useAuthStore } from '../store/authStore';
 import { useDatePickerStore } from '../store/datePickerStore';
-import { addDurationToDate } from '../utils';
-import { formatISO } from 'date-fns';
-const API_URL = import.meta.env.VITE_API_URL;
+import useBooking from '../hooks/useBooking'; // Import your custom hook
 
 const Facility = () => {
   const { id } = useParams();
-  const { user } = useAuthStore();
   const { fetchFacility, facility } = useFacilityStore();
-  const { selectedDate, selectedSlot } = useDatePickerStore();
-  const navigate = useNavigate();
+  const { selectedSlot } = useDatePickerStore();
+  const handleBooking = useBooking();
 
   useEffect(() => {
-    fetchFacility(Number(id));
-  }, []);
+    if (id) fetchFacility(Number(id));
+  }, [id, fetchFacility]);
 
-  const handleBooking = async () => {
-    try {
-      const response = await fetch(`${API_URL}/bookings`, {
-        method: 'POST',
-        body: JSON.stringify({
-          userId: user?.id,
-          facilityId: facility?.id,
-          facilityName: facility?.name,
-          date: formatISO(selectedDate),
-          startTime: formatISO(selectedSlot!),
-          endTime: formatISO(
-            addDurationToDate(selectedSlot!, facility!.slotDuration),
-          ),
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const booking = await response.json();
-      console.log(booking);
-      navigate('/dashboard/bookings');
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+  if (!facility) {
+    return <div>Loading facility data...</div>;
+  }
 
   return (
     <AnimatedDiv>
       <div className="image-container">
         <img
-          src={facility?.image}
-          alt={facility?.name}
+          src={facility.image}
+          alt={facility.name}
           className="facility__image"
         />
       </div>
-      {facility && (
-        <>
-          <WeekPicker />
-          <SlotPicker />
-        </>
-      )}
+      <WeekPicker />
+      <SlotPicker />
       <div style={{ padding: '20px' }}>
         <Button
           disabled={!selectedSlot}
           type="primary"
+          className="shadow"
           block
           size="large"
           onClick={handleBooking}>
-          Book slot
+          Book Slot
         </Button>
       </div>
     </AnimatedDiv>
