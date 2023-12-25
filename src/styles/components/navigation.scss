@@ -1,5 +1,9 @@
 .navigation {
-  min-height: 50px;
+  top: 0px;
+  z-index: 1;
+  position: fixed;
+  width: 100vw;
+  height: 60px;
   padding: 20px;
   background-color: var(--secondary-color);
   display: flex;
