@@ -1,0 +1,27 @@
+.active-bookings {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .booking__title {
+    display: flex;
+    align-items: center;
+  }
+
+  .booking__weekday {
+    opacity: 0.4;
+    font-size: 0.7rem;
+    margin-left: 10px;
+  }
+
+  .booking__label {
+    font-weight: 600;
+  }
+
+  .booking-edit {
+    color: var(--action-color);
+    font-size: 16px;
+    cursor: pointer;
+  }
+}

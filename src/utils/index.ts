@@ -1,4 +1,11 @@
-import { setHours, setMinutes } from 'date-fns';
+import {
+  format,
+  parseISO,
+  setHours,
+  setMinutes,
+  isToday,
+  isTomorrow,
+} from 'date-fns';
 
 export const combineDateAndTime = (baseDate: Date, hours: number) => {
   const minutes = 0;
@@ -13,3 +20,29 @@ export const addDurationToDate = (inputDate: Date, slotDuration: number) => {
 
   return newDate;
 };
+
+export function formatTime(dateString: string): string {
+  const date = parseISO(dateString);
+  return format(date, 'HH:mm');
+}
+
+export function describeDate(dateString: string): string {
+  const date = parseISO(dateString);
+  if (isToday(date)) {
+    return 'Today';
+  } else if (isTomorrow(date)) {
+    return 'Tomorrow';
+  } else {
+    return '';
+  }
+}
+
+export function formatDate(dateString: string): string {
+  const date = parseISO(dateString);
+  return format(date, 'dd MMM');
+}
+
+export function getDayOfWeek(dateString: string): string {
+  const date = parseISO(dateString);
+  return format(date, 'EEEE');
+}
