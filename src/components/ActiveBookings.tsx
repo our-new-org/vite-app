@@ -12,6 +12,7 @@ const ActiveBookings = () => {
       {user && user?.bookings.length > 0 ? (
         user.bookings.map((booking) => (
           <Card
+            className="shadow"
             key={booking.id}
             size="small"
             title={

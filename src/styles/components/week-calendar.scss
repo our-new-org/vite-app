@@ -24,6 +24,7 @@
     text-align: center;
     display: flex;
     justify-content: space-between;
+    box-shadow: var(--shadow);
 
     .select-week__label {
       display: flex;
@@ -49,6 +50,8 @@
     border-bottom-right-radius: var(--roundness);
     border-bottom-left-radius: var(--roundness);
     justify-content: space-between;
+    box-shadow: var(--shadow);
+
     .day-picker__item {
       font-weight: 500;
       flex-direction: column;

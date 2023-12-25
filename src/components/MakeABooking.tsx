@@ -9,6 +9,7 @@ const MakeABooking = () => {
         block
         type="primary"
         size="large"
+        className="shadow"
         onClick={() => navigate('/dashboard/facilities')}>
         Make a Booking
       </Button>

@@ -22,6 +22,7 @@
       border-radius: var(--roundness);
       align-items: center;
       padding: 10px;
+      box-shadow: var(--shadow);
 
       &:hover {
         cursor: pointer;
@@ -45,6 +46,7 @@
     .slot-item--disabled {
       opacity: 0.4;
       cursor: unset;
+      box-shadow: unset;
     }
   }
 }
