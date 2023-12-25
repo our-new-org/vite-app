@@ -1,9 +1,13 @@
 import { UserOutlined } from '@ant-design/icons';
 import { useAuthStore } from '../store/authStore';
+import { useLocation } from 'react-router-dom';
 
-const UserProfile = () => {
+const UserProfile = ({ baseUrl }: { baseUrl: string }) => {
   const { user } = useAuthStore();
+  const location = useLocation();
 
+  if (!user) return null;
+  if (location.pathname === baseUrl) return null;
   return (
     <section className="user-card">
       <UserOutlined className="user-card__icon" size={100} />

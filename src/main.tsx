@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AnimatedRoutes from './components/AnimatedRoutes.tsx';
 import Navbar from './components/Navbar.tsx';
 import { ConfigProvider } from 'antd';
+import UserProfile from './components/UserProfile.tsx';
 const baseUrl = import.meta.env.PROD ? '/vite-app' : '/';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -11,6 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     theme={{ token: { colorPrimary: '#e99ea9', borderRadius: 5 } }}>
     <BrowserRouter basename={baseUrl}>
       <Navbar />
+      <UserProfile baseUrl={baseUrl} />
       <AnimatedRoutes />
     </BrowserRouter>
   </ConfigProvider>,
