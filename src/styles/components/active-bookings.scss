@@ -24,4 +24,9 @@
     font-size: 16px;
     cursor: pointer;
   }
+
+  .booking__no-active {
+    padding: 10px;
+    background-color: rgba($color: #ffffff, $alpha: 0.3);
+  }
 }
