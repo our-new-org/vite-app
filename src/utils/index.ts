@@ -9,7 +9,10 @@ import {
 
 export const combineDateAndTime = (baseDate: Date, hours: number) => {
   const minutes = 0;
-  return setMinutes(setHours(baseDate, hours), minutes);
+  const formattedDate = setMinutes(setHours(baseDate, hours), minutes);
+  formattedDate.setSeconds(0);
+  formattedDate.setMilliseconds(0);
+  return formattedDate;
 };
 
 export const addDurationToDate = (inputDate: Date, slotDuration: number) => {

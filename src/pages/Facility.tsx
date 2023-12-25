@@ -7,7 +7,7 @@ import { useFacilityStore } from '../store/facilityStore';
 import { useEffect } from 'react';
 import { Button } from 'antd';
 import { useAuthStore } from '../store/authStore';
-import { useDatePickerStore } from '../store/DatePickerStore';
+import { useDatePickerStore } from '../store/datePickerStore';
 import { addDurationToDate } from '../utils';
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -60,9 +60,16 @@ const Facility = () => {
           <SlotPicker />
         </>
       )}
-      <Button type="primary" block size="large" onClick={handleBooking}>
-        Book slot
-      </Button>
+      <div style={{ padding: '20px' }}>
+        <Button
+          disabled={!selectedSlot}
+          type="primary"
+          block
+          size="large"
+          onClick={handleBooking}>
+          Book slot
+        </Button>
+      </div>
     </AnimatedDiv>
   );
 };
