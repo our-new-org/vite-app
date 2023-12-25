@@ -1,7 +1,7 @@
 .home {
   gap: 50px;
   flex-flow: row wrap;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 .home-container {
@@ -16,7 +16,7 @@
 }
 
 .home-container__welcome__image {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 80px);
   width: 100%;
   display: block;
 }

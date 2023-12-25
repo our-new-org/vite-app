@@ -53,3 +53,9 @@ export function isSlotBooked(slot: Date, bookings: Booking[]) {
       new Date(slot).getTime() === new Date(booking.startTime).getTime(),
   );
 }
+
+export function delay(time: number) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, time);
+  });
+}

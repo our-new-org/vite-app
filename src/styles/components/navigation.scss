@@ -3,19 +3,45 @@
   z-index: 1;
   position: fixed;
   width: 100vw;
-  height: 60px;
+  height: 80px;
   padding: 20px;
   background-color: var(--secondary-color);
   display: flex;
   justify-content: space-between;
 
-  & .user-icon {
+  .navigation__email {
+    font-size: 0.7rem;
+  }
+
+  .navigation__sign-out {
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: var(--action-color);
+    &:hover {
+      color: var(--action-color-hover);
+    }
+  }
+
+  .navigation__avatar {
+    background-color: var(--action-color);
+
+    &:hover {
+      background-color: var(--action-color-hover);
+      cursor: pointer;
+    }
+  }
+}
+
+.close-icon {
+  color: var(--action-color);
+  &:hover {
     color: var(--action-color-hover);
   }
 }
 
 .menu-list {
   list-style-type: none;
+  padding: 0px 10px;
 
   .menu-list__item {
     margin-bottom: 10px;
