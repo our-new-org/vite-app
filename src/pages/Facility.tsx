@@ -30,6 +30,7 @@ const Facility = () => {
         body: JSON.stringify({
           userId: user?.id,
           facilityId: facility?.id,
+          facilityName: facility?.name,
           date: formatISO(selectedDate),
           startTime: formatISO(selectedSlot!),
           endTime: formatISO(
@@ -42,7 +43,7 @@ const Facility = () => {
       });
       const booking = await response.json();
       console.log(booking);
-      navigate('/bookings');
+      navigate('/dashboard/bookings');
     } catch (error) {
       console.error('Error fetching data:', error);
     }

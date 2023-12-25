@@ -2,6 +2,7 @@ export type User = {
   id: number;
   email: string;
   apartmentNumber: number;
+  bookings: Booking[];
 };
 
 export type Facility = {
@@ -20,6 +21,7 @@ export type Booking = {
   id: number;
   userId: number;
   facilityId: number;
+  facilityName: string;
   date: string;
   startTime: string;
   endTime: string;
