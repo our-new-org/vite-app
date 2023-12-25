@@ -13,12 +13,11 @@ const AllFacilities = () => {
     <>
       <h4 className="grid-title">Facilites</h4>
       <div className="grid-container">
-        {false &&
-          facilities?.map(({ id, name }) => (
-            <div className="grid-item" key={id}>
-              <Link to={`/facility/${id}`}>{name}</Link>
-            </div>
-          ))}
+        {facilities?.map(({ id, name }) => (
+          <div className="grid-item" key={id}>
+            <Link to={`/dashboard/facilities/${id}`}>{name}</Link>
+          </div>
+        ))}
       </div>
     </>
   );
