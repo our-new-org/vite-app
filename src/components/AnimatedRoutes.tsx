@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import Facility from '../pages/Facility';
 import Booking from '../pages/Booking';
 import Facilities from '../pages/Facilities';
+import BookingPage from '../pages/BookingPage';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -17,6 +18,10 @@ const AnimatedRoutes = () => {
         <Route path="/dashboard/facilities" element={<Facilities />} />
         <Route path="/dashboard/facilities/:id" element={<Facility />} />
         <Route path="/dashboard/bookings" element={<Booking />} />
+        <Route
+          path="/dashboard/bookings/:bookingId"
+          element={<BookingPage />}
+        />
       </Routes>
     </AnimatePresence>
   );

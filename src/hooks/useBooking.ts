@@ -41,7 +41,7 @@ const useBooking = () => {
         throw new Error('Booking failed');
       }
 
-      navigate('/dashboard/bookings');
+      navigate('/dashboard');
     } catch (error) {
       // Display error to user
       console.error('Error creating booking:', error);
