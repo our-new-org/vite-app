@@ -1,7 +1,30 @@
-import { Card } from 'antd';
+import { Card, Flex, Popover } from 'antd';
 import { describeDate, formatDate, formatTime, getDayOfWeek } from '../utils';
 import { EditOutlined } from '@ant-design/icons';
 import { useAuthStore } from '../store/authStore';
+import { Link } from 'react-router-dom';
+import { Booking } from '../types';
+
+const renderEditMenu = (booking: Booking) => (
+  <Flex vertical align="start">
+    <Link to={`/dashboard/bookings/${booking.id}`} type="link">
+      Details
+    </Link>
+    <Link to={`/dashboard/facilities/${booking.facilityId}`} type="link">
+      Edit
+    </Link>
+    <Link to="/" type="link">
+      Delete
+    </Link>
+  </Flex>
+);
+
+const renderTitle = (booking: Booking) => (
+  <div className="booking__title">
+    <span>{booking.facilityName}</span>
+    <span className="booking__weekday">{describeDate(booking.date)}</span>
+  </div>
+);
 
 const ActiveBookings = () => {
   const { user } = useAuthStore();
@@ -15,15 +38,12 @@ const ActiveBookings = () => {
             className="shadow"
             key={booking.id}
             size="small"
-            title={
-              <div className="booking__title">
-                <span>{booking.facilityName}</span>
-                <span className="booking__weekday">
-                  {describeDate(booking.date)}
-                </span>
-              </div>
-            }
-            extra={<EditOutlined className="booking-edit" size={100} />}>
+            title={renderTitle(booking)}
+            extra={
+              <Popover placement="leftTop" content={renderEditMenu(booking)}>
+                <EditOutlined className="booking-edit" />
+              </Popover>
+            }>
             <p>
               <span className="booking__label">When:</span>{' '}
               {getDayOfWeek(booking.date)} {formatDate(booking.date)}
