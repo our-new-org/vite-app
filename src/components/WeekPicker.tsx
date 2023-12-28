@@ -4,10 +4,13 @@ import {
   startOfWeek,
   addDays,
   isSameDay,
-  subWeeks,
   addWeeks,
+  subWeeks,
+  differenceInWeeks,
 } from 'date-fns';
 import { useDatePickerStore } from '../store/datePickerStore';
+
+
 
 const WeekPicker = () => {
   const { selectedDate, setSelectedDate, setCurrentMonth, currentMonth } =
@@ -19,7 +22,14 @@ const WeekPicker = () => {
         ? subWeeks(currentMonth, 1)
         : addWeeks(currentMonth, 1);
 
-    setCurrentMonth(selectedMonth);
+    const isPastWeek = differenceInWeeks(selectedMonth, new Date()) < 0;
+
+    // Only allow going back to previous weeks until the current week
+    if (btnType === 'prev' && isPastWeek) {
+      setCurrentMonth(currentMonth);
+    } else {
+      setCurrentMonth(selectedMonth);
+    }
   };
 
   const weekStart = startOfWeek(currentMonth, { weekStartsOn: 1 });
@@ -55,7 +65,8 @@ const WeekPicker = () => {
                 isSameDay(day, selectedDate) ? 'selected' : ''
               }`}
               key={day.toString()}
-              onClick={() => setSelectedDate(day)}>
+              onClick={() => setSelectedDate(day)}
+            >
               <h6>{format(day, 'EEE')}</h6>
               <span>{format(day, 'd')}</span>
             </div>
