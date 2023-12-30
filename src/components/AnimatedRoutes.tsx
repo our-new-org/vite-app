@@ -6,6 +6,7 @@ import Facility from '../pages/Facility';
 import Booking from '../pages/Booking';
 import Facilities from '../pages/Facilities';
 import BookingPage from '../pages/BookingPage';
+import Confirmation from './ConfirmationInfo';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -22,6 +23,7 @@ const AnimatedRoutes = () => {
           path="/dashboard/bookings/:bookingId"
           element={<BookingPage />}
         />
+        <Route path="/confirmation" element={<Confirmation />} />
       </Routes>
     </AnimatePresence>
   );

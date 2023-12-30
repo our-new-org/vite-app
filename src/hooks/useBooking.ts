@@ -6,6 +6,7 @@ import { useDatePickerStore } from '../store/datePickerStore';
 import { useFacilityStore } from '../store/facilityStore';
 import { formatISO } from 'date-fns';
 import { addDurationToDate } from '../utils';
+import { useBookingStore } from '../store/bookingStore';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -14,6 +15,7 @@ const useBooking = () => {
   const { user } = useAuthStore();
   const { facility } = useFacilityStore();
   const { selectedDate, selectedSlot } = useDatePickerStore();
+  const { setBookingDetails } = useBookingStore();
 
   const handleBooking = useCallback(async () => {
     if (!selectedSlot || !facility || !user) return;
@@ -41,14 +43,16 @@ const useBooking = () => {
         throw new Error('Booking failed');
       }
 
-      navigate('/dashboard');
+      const result = await response.json();
+      setBookingDetails(result);
+      navigate('/confirmation');
     } catch (error) {
       // Display error to user
       console.error('Error creating booking:', error);
     }
   }, [user, facility, selectedSlot, selectedDate, navigate]);
 
-  return handleBooking;
+  return { handleBooking };
 };
 
 export default useBooking;

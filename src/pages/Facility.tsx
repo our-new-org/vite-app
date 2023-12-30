@@ -13,7 +13,7 @@ const Facility = () => {
   const { id } = useParams();
   const { fetchFacility, facility } = useFacilityStore();
   const { selectedSlot } = useDatePickerStore();
-  const handleBooking = useBooking();
+  const { handleBooking } = useBooking();
 
   useEffect(() => {
     if (id) fetchFacility(Number(id));
