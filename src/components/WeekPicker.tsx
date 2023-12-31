@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {
   format,
@@ -10,11 +11,15 @@ import {
 } from 'date-fns';
 import { useDatePickerStore } from '../store/datePickerStore';
 
-
-
 const WeekPicker = () => {
   const { selectedDate, setSelectedDate, setCurrentMonth, currentMonth } =
     useDatePickerStore();
+
+  useEffect(() => {
+    // Set the current month to the start of the current week
+    setCurrentMonth(startOfWeek(new Date(), { weekStartsOn: 1 }));
+    setSelectedDate(new Date());
+  }, []); // This effect runs only once when the component mounts
 
   const changeWeekHandle = (btnType: string) => {
     const selectedMonth =
@@ -26,7 +31,7 @@ const WeekPicker = () => {
 
     // Only allow going back to previous weeks until the current week
     if (btnType === 'prev' && isPastWeek) {
-      setCurrentMonth(currentMonth);
+      setCurrentMonth(startOfWeek(new Date(), { weekStartsOn: 1 }));
     } else {
       setCurrentMonth(selectedMonth);
     }
@@ -41,7 +46,7 @@ const WeekPicker = () => {
     weekDays.push(day);
   }
 
-  const formattedWeek = format(currentMonth, 'w');
+  const formattedWeek = format(weekStart, 'w');
 
   return (
     <>
