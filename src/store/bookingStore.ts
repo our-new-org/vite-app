@@ -8,6 +8,7 @@ type BookingStore = {
   bookingDetails: Booking | null;
   fetchBookingByUser: (userId: number) => void;
   setBookingDetails: (bookingDetails: Booking) => void;
+  cancelBooking: (bookingId: number) => void;
 };
 
 export const useBookingStore = create<BookingStore>((set) => ({
@@ -26,5 +27,20 @@ export const useBookingStore = create<BookingStore>((set) => ({
   },
   setBookingDetails: (bookingDetails: Booking) => {
     set({ bookingDetails });
+  },
+  cancelBooking: async (bookingId: number) => {
+    try {
+      const response = await fetch(`${API_URL}/bookings/${bookingId}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Booking cancellation failed.');
+      }
+
+      set({ bookingDetails: null }); // Clear booking details after cancellation
+    } catch (error) {
+      console.error('Error cancelling booking:', error);
+    }
   },
 }));
