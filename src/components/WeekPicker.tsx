@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {
   format,
@@ -10,16 +10,41 @@ import {
   differenceInWeeks,
 } from 'date-fns';
 import { useDatePickerStore } from '../store/datePickerStore';
+import { useAuthStore } from '../store/authStore';
 
-const WeekPicker = () => {
-  const { selectedDate, setSelectedDate, setCurrentMonth, currentMonth } =
-    useDatePickerStore();
+const WeekPicker = ({ bookingId }: { bookingId?: string }) => {
+  const { user } = useAuthStore();
+  const [date, setDate] = useState(new Date());
+
+  const {
+    selectedDate,
+    setSelectedDate,
+    setCurrentMonth,
+    currentMonth,
+    setSelectedSlot,
+  } = useDatePickerStore();
+
+  useEffect(() => {
+    if (bookingId) {
+      const selectedBooking = user?.bookings.find(
+        (booking) => booking.id === Number(bookingId),
+      );
+
+      if (selectedBooking) {
+        setDate(new Date(selectedBooking.date));
+        console.log('im here too', new Date(selectedBooking.date));
+        setSelectedSlot(new Date(selectedBooking.startTime));
+      }
+    } else {
+      setDate(new Date());
+    }
+  }, [bookingId, user]);
 
   useEffect(() => {
     // Set the current month to the start of the current week
-    setCurrentMonth(startOfWeek(new Date(), { weekStartsOn: 1 }));
-    setSelectedDate(new Date());
-  }, []); // This effect runs only once when the component mounts
+    setCurrentMonth(startOfWeek(date, { weekStartsOn: 1 }));
+    setSelectedDate(date);
+  }, [date]); // This effect runs only once when the component mounts
 
   const changeWeekHandle = (btnType: string) => {
     const selectedMonth =
@@ -70,8 +95,7 @@ const WeekPicker = () => {
                 isSameDay(day, selectedDate) ? 'selected' : ''
               }`}
               key={day.toString()}
-              onClick={() => setSelectedDate(day)}
-            >
+              onClick={() => setSelectedDate(day)}>
               <h6>{format(day, 'EEE')}</h6>
               <span>{format(day, 'd')}</span>
             </div>

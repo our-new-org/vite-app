@@ -40,7 +40,9 @@ const BookingPage = () => {
         <Flex justify="end" gap={20}>
           <Button
             type="primary"
-            onClick={() => navigate(`/dashboard/bookings/${bookingId}/edit`)}>
+            onClick={() =>
+              navigate(`/dashboard/bookings/${bookingId}/${facility?.id}/edit`)
+            }>
             Edit
           </Button>
           <Button type="dashed">Delete</Button>
