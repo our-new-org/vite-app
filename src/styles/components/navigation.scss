@@ -13,6 +13,15 @@
     font-size: 0.7rem;
   }
 
+  .sign-out {
+    padding: 5px 10px;
+    background-color: var(--action-color);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: var(--roundness);
+  }
+
   .navigation__link {
     font-size: 0.8rem;
     font-weight: 500;

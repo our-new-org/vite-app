@@ -2,14 +2,13 @@ import { UserOutlined } from '@ant-design/icons';
 import logo from '../assets/logo.png';
 import { Avatar, Flex } from 'antd';
 import { useAuthStore } from '../store/authStore';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import MenuDrawer from './MenuDrawer';
 import { useWindowSize } from '@uidotdev/usehooks';
 
 const Navbar = () => {
   const { user } = useAuthStore();
-  const navigate = useNavigate();
   const size = useWindowSize();
   const [drawerVisible, setDrawerVisible] = useState(false);
   const mobileView = size.width ? (size.width < 600 ? true : false) : false;
@@ -35,27 +34,18 @@ const Navbar = () => {
               <Link className="navigation__link" to="/dashboard">
                 My Bookings
               </Link>
-              <Link className="navigation__link" to="/">
+              <Link className="sign-out" to="/">
                 Sign out
               </Link>
             </Flex>
           )}
           <MenuDrawer visible={drawerVisible} onClose={onCloseDrawer} />
-
-          <Avatar
-            className="navigation__avatar"
-            icon={
-              <UserOutlined
-                onClick={() => {
-                  if (mobileView) {
-                    showDrawer();
-                  } else {
-                    navigate('/dashboard');
-                  }
-                }}
-              />
-            }
-          />
+          {mobileView && (
+            <Avatar
+              className="navigation__avatar"
+              icon={<UserOutlined onClick={showDrawer} />}
+            />
+          )}
         </Flex>
       </span>
     </nav>
