@@ -13,7 +13,7 @@ const useEditBooking = (bookingId: string | undefined | null) => {
   console.log(bookingId);
 
   const navigate = useNavigate();
-  const { user } = useAuthStore();
+  const { user, fetchUser } = useAuthStore();
   const { facility } = useFacilityStore();
   const { selectedDate, selectedSlot } = useDatePickerStore();
   const { setBookingDetails } = useBookingStore();
@@ -45,6 +45,7 @@ const useEditBooking = (bookingId: string | undefined | null) => {
       }
 
       const result = await response.json();
+      fetchUser();
       setBookingDetails(result);
       navigate('/confirmation');
     } catch (error) {
