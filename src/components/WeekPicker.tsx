@@ -64,18 +64,21 @@ const WeekPicker = () => {
           />
         </div>
         <div className="day-picker">
-          {weekDays.map((day) => (
+        {weekDays.map((day) => {
+          const isPastDay = isSameDay(day, startOfWeek(new Date(), { weekStartsOn: 1 })) || day < startOfWeek(new Date(), { weekStartsOn: 1 });
+          return (
             <div
               className={`day-picker__item ${
                 isSameDay(day, selectedDate) ? 'selected' : ''
-              }`}
+              } ${isPastDay ? 'past-day' : ''}`}
               key={day.toString()}
-              onClick={() => setSelectedDate(day)}
+              onClick={() => !isPastDay && setSelectedDate(day)}
             >
               <h6>{format(day, 'EEE')}</h6>
               <span>{format(day, 'd')}</span>
             </div>
-          ))}
+          );
+        })}
         </div>
       </div>
     </>
