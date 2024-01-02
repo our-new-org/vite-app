@@ -8,12 +8,14 @@ interface AuthStore {
   fetchUser: () => void;
   session: Session | null;
   setSession: (session: Session | null) => void;
+  setUser: (user: User | null) => void;
 }
 
 export const useAuthStore = create<AuthStore>((set, get) => ({
   user: null,
   session: null,
   setSession: (session: Session | null) => set({ session }),
+  setUser: (user: User | null) => set({ user }),
   fetchUser: async () => {
     try {
       const response = await fetch(

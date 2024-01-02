@@ -33,7 +33,7 @@ const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
               to="/dashboard"
               onClick={handleLinkClick}
               className="menu-list__link">
-              Profile
+              My Bookings
             </Link>
           ) : (
             <Link

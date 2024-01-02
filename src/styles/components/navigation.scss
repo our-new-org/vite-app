@@ -20,6 +20,10 @@
     font-size: 0.8rem;
     font-weight: 500;
     border-radius: var(--roundness);
+
+    &:hover {
+      background-color: var(--action-color-hover);
+    }
   }
 
   .navigation__link {
