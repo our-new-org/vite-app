@@ -5,10 +5,14 @@ import { getDayOfWeek, formatDate, formatTime } from '../utils';
 import { useFacilityStore } from '../store/facilityStore';
 import { useEffect } from 'react';
 import FacilityInfo from '../components/FacilityInfo';
+import { useNavigate } from 'react-router-dom';
 
 const BookingPage = () => {
   const { bookingId } = useParams();
+  const navigate = useNavigate();
+
   const { user } = useAuthStore();
+
   const booking = user?.bookings.find(
     (booking) => booking.id === Number(bookingId),
   );
@@ -34,7 +38,11 @@ const BookingPage = () => {
         </p>
         <Divider />
         <Flex justify="end" gap={20}>
-          <Button type="primary">Edit</Button>
+          <Button
+            type="primary"
+            onClick={() => navigate(`/dashboard/bookings/${bookingId}/edit`)}>
+            Edit
+          </Button>
           <Button type="dashed">Delete</Button>
         </Flex>
       </Card>
