@@ -1,11 +1,12 @@
 import { UserOutlined } from '@ant-design/icons';
 import logo from '../assets/logo.png';
-import { Avatar, Flex } from 'antd';
+import { Avatar, Button, Flex } from 'antd';
 import { useAuthStore } from '../store/authStore';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import MenuDrawer from './MenuDrawer';
 import { useWindowSize } from '@uidotdev/usehooks';
+import supabase from '../libs/supabase';
 
 const Navbar = () => {
   const { user } = useAuthStore();
@@ -37,9 +38,9 @@ const Navbar = () => {
               <Link className="navigation__link" to="/dashboard">
                 My Bookings
               </Link>
-              <Link className="sign-out" to="/">
+              <Button onClick={() => supabase.auth.signOut()} type="primary">
                 Sign out
-              </Link>
+              </Button>
             </Flex>
           )}
           <MenuDrawer visible={drawerVisible} onClose={onCloseDrawer} />
