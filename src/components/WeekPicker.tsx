@@ -8,6 +8,8 @@ import {
   addWeeks,
   subWeeks,
   differenceInWeeks,
+  isBefore,
+  startOfDay,
 } from 'date-fns';
 import { useDatePickerStore } from '../store/datePickerStore';
 import { useAuthStore } from '../store/authStore';
@@ -89,21 +91,20 @@ const WeekPicker = ({ bookingId }: { bookingId?: string }) => {
           />
         </div>
         <div className="day-picker">
-        {weekDays.map((day) => {
-          const isPastDay = isSameDay(day, startOfWeek(new Date(), { weekStartsOn: 1 })) || day < startOfWeek(new Date(), { weekStartsOn: 1 });
-          return (
-            <div
-              className={`day-picker__item ${
-                isSameDay(day, selectedDate) ? 'selected' : ''
-              } ${isPastDay ? 'past-day' : ''}`}
-              key={day.toString()}
-              onClick={() => !isPastDay && setSelectedDate(day)}
-            >
-              <h6>{format(day, 'EEE')}</h6>
-              <span>{format(day, 'd')}</span>
-            </div>
-          );
-        })}
+          {weekDays.map((day) => {
+            const isPastDay = isBefore(day, startOfDay(new Date()));
+            return (
+              <div
+                className={`day-picker__item ${
+                  isSameDay(day, selectedDate) ? 'selected' : ''
+                } ${isPastDay ? 'past-day' : ''}`}
+                key={day.toString()}
+                onClick={() => (isPastDay ? null : setSelectedDate(day))}>
+                <h6>{format(day, 'EEE')}</h6>
+                <span>{format(day, 'd')}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

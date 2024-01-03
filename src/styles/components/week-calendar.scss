@@ -67,5 +67,13 @@
       color: var(--secondary-color);
       background-color: var(--action-color);
     }
+
+    .day-picker__item.past-day {
+      background-color: var(
+        --primary-color
+      ); /* Light gray background for past days */
+      color: #aaa;
+      cursor: not-allowed;
+    }
   }
 }
