@@ -2,10 +2,35 @@
   margin-top: 20px;
   box-shadow: var(--shadow);
 
+  .facility-info__container {
+    display: flex;
+  }
+
   .facility-info__image {
-    width: 100%;
+    flex: 1;
+    max-width: 200px;
     height: auto;
     object-fit: cover;
     border-radius: 2px;
+  }
+
+  .facility-info__details {
+    flex: 1;
+    padding: 0 16px;
+  }
+
+  .facility-info__data {
+    font-weight: lighter;
+    font-size: 15px;
+    margin-left: 8px;
+  }
+
+  .facility-info__details .icon {
+    font-size: 14px;
+    margin-right: 5px;
+  }
+
+  .facility-info__description {
+    margin-top: 10px;
   }
 }
