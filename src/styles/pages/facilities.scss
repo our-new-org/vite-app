@@ -13,10 +13,16 @@
   gap: 20px;
 }
 
+@media screen and (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .grid-item {
   position: relative;
   display: flex;
-  max-height: 150px;
+  max-height: 250px;
   border-radius: var(--roundness-medium);
   background-color: var(--secondary-color);
   box-shadow: var(--shadow);
@@ -52,4 +58,6 @@
       text-overflow: ellipsis;
     }
   }
+
+
 }
