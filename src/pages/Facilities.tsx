@@ -12,7 +12,10 @@ const Facilities = () => {
 
   return (
     <AnimatedDiv>
-      <h4 className="grid-title">Facilites</h4>
+      <h1 className="page__title">Facilites</h1>
+      <h2 className="page__description">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </h2>
       <div className="grid-container">
         {facilities?.map((facility) => (
           <FacilityCard key={facility.id} facility={facility} />
