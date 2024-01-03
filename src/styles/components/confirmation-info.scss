@@ -1,7 +1,9 @@
 .confirmation-container {
   max-width: 500px;
   margin: 0 auto;
+  flex-grow: 1;
   padding: 20px;
+  margin-bottom: 50px;
   border: 2px solid var(--primary-color);
   border-radius: 8px;
   background-color: var(--secondary-color);
@@ -20,25 +22,25 @@
 }
 
 .confirmation-paragraph__text {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .cancel-booking-button {
-    background-color: var(--action-color);
-    color: var(--cancel-button-text);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px; // Add margin-top to separate the button
-    align-self: center; 
-    transition: background-color 0.3s ease, color 0.3s ease;
-  
-    &:hover {
-      background-color: var(--action-color-hover);
-      color: var(--action-color-light);
-    }
+  background-color: var(--action-color);
+  color: var(--cancel-button-text);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px; // Add margin-top to separate the button
+  align-self: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: var(--action-color-hover);
+    color: var(--action-color-light);
   }
+}
 
 .confirmation-link {
   display: block;
@@ -48,6 +50,6 @@
 
   &:hover {
     text-decoration: underline;
-    color: var(--action-color-hover)
+    color: var(--action-color-hover);
   }
 }
