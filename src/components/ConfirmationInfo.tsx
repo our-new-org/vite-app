@@ -31,7 +31,7 @@ const ConfirmationInfo = () => {
     : '';
   const formattedStartTime = bookingDetails
     ? format(new Date(bookingDetails.startTime), 'h:mm a')
-    : '';
+    : ''; 
   const formattedEndTime = bookingDetails
     ? format(new Date(bookingDetails.endTime), 'h:mm a')
     : '';

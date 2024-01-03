@@ -1,33 +1,55 @@
-import { Card, Flex, Popover } from 'antd';
+import { Button, Card, Flex, Popover } from 'antd';
 import { describeDate, formatDate, formatTime, getDayOfWeek } from '../utils';
 import { EditOutlined } from '@ant-design/icons';
 import { useAuthStore } from '../store/authStore';
 import { Link } from 'react-router-dom';
 import { Booking } from '../types';
-
-const renderEditMenu = (booking: Booking) => (
-  <Flex vertical align="start">
-    <Link to={`/dashboard/bookings/${booking.id}`} type="link">
-      Details
-    </Link>
-    <Link to={`/dashboard/facilities/${booking.facilityId}`} type="link">
-      Edit
-    </Link>
-    <Link to="/" type="link">
-      Delete
-    </Link>
-  </Flex>
-);
-
-const renderTitle = (booking: Booking) => (
-  <div className="booking__title">
-    <span>{booking.facilityName}</span>
-    <span className="booking__weekday">{describeDate(booking.date)}</span>
-  </div>
-);
+import { useBookingStore } from '../store/bookingStore';
+import ConfirmationModal from './ConfirmationModal';
+import { useState } from 'react';
 
 const ActiveBookings = () => {
   const { user } = useAuthStore();
+  const { cancelBooking } = useBookingStore();
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleCancelBooking = (bookingId: number) => {
+    if (bookingId) {
+      setModalVisible(true);
+    }
+  };
+
+  const handleConfirm = (bookingId: number) => {
+    if (bookingId !== undefined) {
+      cancelBooking(bookingId);
+    }
+    setModalVisible(false);
+  };
+
+  const handleCancelModal = () => {
+    setModalVisible(false);
+  };
+
+  const renderEditMenu = (booking: Booking) => (
+    <Flex vertical align="start">
+      <Link to={`/dashboard/bookings/${booking.id}`} type="link">
+        Details
+      </Link>
+      <Link to={`/dashboard/facilities/${booking.facilityId}`} type="link">
+        Edit
+      </Link>
+      <Button type="link" onClick={() => handleCancelBooking(booking.id)}>
+        Delete
+      </Button>
+    </Flex>
+  );
+
+  const renderTitle = (booking: Booking) => (
+    <div className="booking__title">
+      <span>{booking.facilityName}</span>
+      <span className="booking__weekday">{describeDate(booking.date)}</span>
+    </div>
+  );
 
   return (
     <div className="active-bookings">
@@ -52,6 +74,11 @@ const ActiveBookings = () => {
               <span className="booking__label">Time:</span>{' '}
               {formatTime(booking.startTime)} - {formatTime(booking.endTime)}
             </p>
+            <ConfirmationModal
+              open={isModalVisible}
+              onConfirm={() => handleConfirm(booking.id)}
+              onCancel={handleCancelModal}
+            />
           </Card>
         ))
       ) : (

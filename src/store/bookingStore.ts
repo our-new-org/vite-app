@@ -18,8 +18,6 @@ export const useBookingStore = create<BookingStore>((set) => ({
     try {
       const response = await fetch(`${API_URL}/bookings/${userId}`);
       const bookings = await response.json();
-      console.log(bookings);
-
       set({ bookings });
     } catch (error) {
       console.error('Error fetching bookings:', error);
@@ -39,6 +37,10 @@ export const useBookingStore = create<BookingStore>((set) => ({
       }
 
       set({ bookingDetails: null }); // Clear booking details after cancellation
+      // set((state) => ({
+      //   bookings: state.bookings?.filter((booking) => booking.id !== bookingId) || null,
+      //   bookingDetails: null,
+      // }));
     } catch (error) {
       console.error('Error cancelling booking:', error);
     }

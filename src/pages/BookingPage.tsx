@@ -3,8 +3,10 @@ import { useAuthStore } from '../store/authStore';
 import { Button, Card, Divider, Flex } from 'antd';
 import { getDayOfWeek, formatDate, formatTime } from '../utils';
 import { useFacilityStore } from '../store/facilityStore';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import FacilityInfo from '../components/FacilityInfo';
+import ConfirmationModal from '../components/ConfirmationModal';
+import { useBookingStore } from '../store/bookingStore';
 
 const BookingPage = () => {
   const { bookingId } = useParams();
@@ -14,6 +16,25 @@ const BookingPage = () => {
   );
 
   const { fetchFacility, facility } = useFacilityStore();
+  const { cancelBooking } = useBookingStore();
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleCancelBooking = (bookingId: number) => {
+    if (bookingId) {
+      setModalVisible(true);
+    }
+  };
+
+  const handleConfirm = (bookingId: number) => {
+    if (bookingId !== undefined) {
+      cancelBooking(bookingId);
+    }
+    setModalVisible(false);
+  };
+
+  const handleCancelModal = () => {
+    setModalVisible(false);
+  };
 
   useEffect(() => {
     fetchFacility(Number(booking?.facilityId));
@@ -35,8 +56,15 @@ const BookingPage = () => {
         <Divider />
         <Flex justify="end" gap={20}>
           <Button type="primary">Edit</Button>
-          <Button type="dashed">Delete</Button>
+          <Button type="dashed" onClick={() => handleCancelBooking(booking.id)}>
+            Delete
+          </Button>
         </Flex>
+        <ConfirmationModal
+          open={isModalVisible}
+          onConfirm={() => handleConfirm(booking.id)}
+          onCancel={handleCancelModal}
+        />
       </Card>
       {facility && <FacilityInfo facility={facility} />}
     </div>
