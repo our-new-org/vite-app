@@ -31,6 +31,9 @@ const Navbar = () => {
         <Flex gap={10}>
           {user && !mobileView && (
             <Flex gap={40} align="center" style={{ marginRight: '20px' }}>
+              <Link className="navigation__link" to="/dashboard/facilities">
+                Make a Booking
+              </Link>
               <Link className="navigation__link" to="/dashboard">
                 My Bookings
               </Link>
