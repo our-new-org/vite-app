@@ -1,12 +1,45 @@
 .footer {
-  background-color: white;
   display: flex;
   justify-content: center;
 
-  .footer_content {
+  a {
+    text-decoration: none;
+    color: black;
+    opacity: 0.6;
+    font-size: 15px;
+    &:hover {
+      color: var(--action-color);
+    }
+  }
+
+  .footer__content {
+    max-width: 700px;
+    padding: 20px 0px;
+    border-top: 1px solid var(--secondary-color);
     display: flex;
-    padding: 20px;
     justify-content: space-between;
     flex-grow: 1;
+  }
+
+  .footer__content__contact {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer__content__title {
+    opacity: 0.6;
+  }
+
+  .footer__content__github {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .footer__content__icon {
+    color: var(--action-color);
+    height: 22px;
+    width: 22px;
   }
 }
