@@ -19,6 +19,11 @@
 #957b7d
 #6b6a68
 */
+
+#root {
+  height: calc(100vh - 181px);
+}
+
 :root {
   --primary-color: #eff2fa;
   --secondary-color: #ffffff;
