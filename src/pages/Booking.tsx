@@ -9,8 +9,6 @@ const Booking = () => {
 
   useEffect(() => {
     if (user) {
-      console.log('found user');
-
       fetchBookingByUser(user.id); // Assuming user.id is the ID of the logged-in user
     }
   }, [user, fetchBookingByUser]);

@@ -10,7 +10,7 @@ type BookingStore = {
   setBookingDetails: (bookingDetails: Booking) => void;
   cancelBooking: (bookingId: number) => void;
 };
-
+import { useAuthStore } from './authStore';
 export const useBookingStore = create<BookingStore>((set) => ({
   bookings: null,
   bookingDetails: null,
@@ -41,6 +41,7 @@ export const useBookingStore = create<BookingStore>((set) => ({
       //   bookings: state.bookings?.filter((booking) => booking.id !== bookingId) || null,
       //   bookingDetails: null,
       // }));
+      useAuthStore.getState().fetchUser();
     } catch (error) {
       console.error('Error cancelling booking:', error);
     }

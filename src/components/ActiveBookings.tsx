@@ -35,7 +35,10 @@ const ActiveBookings = () => {
       <Link to={`/dashboard/bookings/${booking.id}`} type="link">
         Details
       </Link>
-      <Link to={`/dashboard/facilities/${booking.facilityId}`} type="link">
+
+      <Link
+      to={`/dashboard/bookings/${booking.id}/${booking.facilityId}/edit`}
+      type="link">
         Edit
       </Link>
       <Button type="link" onClick={() => handleCancelBooking(booking.id)}>

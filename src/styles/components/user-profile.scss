@@ -1,25 +1,41 @@
 .user-card {
+  margin: auto;
   background-color: var(--secondary-color);
   padding: 20px;
   padding-top: 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
   border-top: 1px solid var(--primary-color);
   box-shadow: var(--shadow);
 
-  .user-card__icon {
-    font-size: 40px;
-    opacity: 0.6;
+  .user-card_inner {
+    display: flex;
+    gap: 20px;
+    max-width: 660px;
+    margin: auto;
+  }
+
+  .user-card__content {
+    display: flex;
+    padding-top: 10px;
+    flex-direction: column;
+  }
+
+  .user-card__label {
+    opacity: 0.8;
+    font-size: 16px;
+    font-weight: 500;
   }
 
   .user-card__email {
-    opacity: 0.6;
+    opacity: 0.8;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 700;
   }
 
   .user-card__apartment-number {
-    opacity: 0.4;
-    font-size: 12px;
+    opacity: 1;
+    font-size: 16px;
+    color: var(--action-color);
+    font-weight: 500;
   }
 }

@@ -1,4 +1,3 @@
-// useBooking.ts
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
@@ -10,15 +9,17 @@ import { useBookingStore } from '../store/bookingStore';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const useBooking = () => {
+const useEditBooking = (bookingId: string | undefined | null) => {
+  console.log(bookingId);
+
   const navigate = useNavigate();
   const { user, fetchUser } = useAuthStore();
   const { facility } = useFacilityStore();
   const { selectedDate, selectedSlot } = useDatePickerStore();
   const { setBookingDetails } = useBookingStore();
 
-  const handleBooking = useCallback(async () => {
-    if (!selectedSlot || !facility || !user) return;
+  const handleEditBooking = useCallback(async () => {
+    if (!selectedSlot || !facility || !user || !bookingId) return;
 
     try {
       const startTime = formatISO(selectedSlot);
@@ -26,8 +27,8 @@ const useBooking = () => {
         addDurationToDate(selectedSlot, facility.slotDuration),
       );
 
-      const response = await fetch(`${API_URL}/bookings`, {
-        method: 'POST',
+      const response = await fetch(`${API_URL}/bookings/${bookingId}`, {
+        method: 'PUT',
         body: JSON.stringify({
           userId: user.id,
           facilityId: facility.id,
@@ -40,7 +41,7 @@ const useBooking = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Booking failed');
+        throw new Error('Booking update failed');
       }
 
       const result = await response.json();
@@ -49,11 +50,11 @@ const useBooking = () => {
       navigate('/confirmation');
     } catch (error) {
       // Display error to user
-      console.error('Error creating booking:', error);
+      console.error('Error updating booking:', error);
     }
-  }, [user, facility, selectedSlot, selectedDate, navigate]);
+  }, [bookingId, user, facility, selectedSlot, selectedDate, navigate]);
 
-  return { handleBooking };
+  return { handleEditBooking };
 };
 
-export default useBooking;
+export default useEditBooking;
