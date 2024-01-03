@@ -26,9 +26,10 @@ const SlotPicker: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        style={{ width: '100%' }}
         transition={{ duration: 0.1 }}>
         <section className="facility">
-          <h1 className="facility__title">Available Slots</h1>
+          <h1 className="page__secondary__title">Available Slots</h1>
           <ul className="slot-list">
             {slots.map((slot) => (
               <Slot

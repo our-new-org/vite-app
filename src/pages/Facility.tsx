@@ -32,9 +32,10 @@ const Facility = () => {
           className="facility__image"
         />
       </div>
+      <h1 className="page__title">Start Booking</h1>
       <WeekPicker />
       <SlotPicker />
-      <div style={{ padding: '20px' }}>
+      <div style={{ padding: '20px', width: '100%', maxWidth: '640px' }}>
         <Button
           disabled={!selectedSlot}
           type="primary"

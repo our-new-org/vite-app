@@ -8,6 +8,7 @@ import FacilityInfo from '../components/FacilityInfo';
 import { useNavigate } from 'react-router-dom';
 import ConfirmationModal from '../components/ConfirmationModal';
 import { useBookingStore } from '../store/bookingStore';
+import AnimatedDiv from '../components/AnimatedDiv';
 
 const BookingPage = () => {
   const { bookingId } = useParams();
@@ -51,10 +52,14 @@ const BookingPage = () => {
   }, [booking]);
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>{booking?.facilityName} Booking</h2>
+    <AnimatedDiv>
+      <h1 className="page__title">Booking</h1>
       {booking && (
-        <Card className="shadow" key={booking.id} size="small" extra={null}>
+        <Card
+          className="shadow booking-details-wrapper"
+          key={booking.id}
+          size="small"
+          extra={null}>
           <p>
             <span className="booking__label">When:</span>{' '}
             {getDayOfWeek(booking.date)} {formatDate(booking.date)}
@@ -88,7 +93,7 @@ const BookingPage = () => {
         </Card>
       )}
       {facility && <FacilityInfo facility={facility} />}
-    </div>
+    </AnimatedDiv>
   );
 };
 

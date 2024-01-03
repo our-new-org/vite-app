@@ -37,8 +37,8 @@ const ActiveBookings = () => {
       </Link>
 
       <Link
-      to={`/dashboard/bookings/${booking.id}/${booking.facilityId}/edit`}
-      type="link">
+        to={`/dashboard/bookings/${booking.id}/${booking.facilityId}/edit`}
+        type="link">
         Edit
       </Link>
       <Button type="link" onClick={() => handleCancelBooking(booking.id)}>
@@ -56,11 +56,11 @@ const ActiveBookings = () => {
 
   return (
     <div className="active-bookings">
-      <h6>Active Bookings</h6>
+      <h2 className="page__secondary__title">Active Bookings</h2>
       {user && user?.bookings.length > 0 ? (
         user.bookings.map((booking) => (
           <Card
-            className="shadow"
+            className="shadow active__booking__card"
             key={booking.id}
             size="small"
             title={renderTitle(booking)}

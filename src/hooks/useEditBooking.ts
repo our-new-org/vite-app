@@ -10,8 +10,6 @@ import { useBookingStore } from '../store/bookingStore';
 const API_URL = import.meta.env.VITE_API_URL;
 
 const useEditBooking = (bookingId: string | undefined | null) => {
-  console.log(bookingId);
-
   const navigate = useNavigate();
   const { user, fetchUser } = useAuthStore();
   const { facility } = useFacilityStore();

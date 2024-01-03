@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const MakeABooking = () => {
   const navigate = useNavigate();
   return (
-    <div style={{ padding: '0px 20px', marginBottom: '50px' }}>
+    <div style={{ padding: '20px', width: '100%', maxWidth: '640px' }}>
       <Button
         block
         type="primary"

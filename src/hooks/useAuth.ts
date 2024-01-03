@@ -23,7 +23,6 @@ export const useAuth = () => {
     } = supabase.auth.onAuthStateChange((_event, supabaseSession) => {
       setSession(supabaseSession);
       supabaseSession && fetchUser();
-      console.log(_event);
 
       if (_event === 'SIGNED_OUT') {
         setUser(null);

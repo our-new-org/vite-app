@@ -1,8 +1,14 @@
 .active-bookings {
   padding: 20px;
+  width: 100%;
+  max-width: 640px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  .active__booking__card {
+    //border: 1px solid var(--action-color);
+  }
 
   .booking__title {
     display: flex;

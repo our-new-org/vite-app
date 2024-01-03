@@ -45,22 +45,39 @@
   //border: 1px solid var(--success);
 }
 
+.booking-details-wrapper {
+  width: 100%;
+
+  margin-top: 40px;
+  //border: 1px solid var(--action-color);
+}
+
 .page__title {
   margin-top: 20px;
   margin-left: 20px;
-  font-size: 48px;
+  font-size: 40px;
   text-align: center;
   font-weight: 700;
-  opacity: 0.8;
+  opacity: 0.7;
+}
+
+.page__secondary__title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 0px 20px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 500;
+  opacity: 0.7;
 }
 
 .page__description {
   margin-bottom: 60px;
-  padding: 0px 60px;
+  padding: 0px 20px;
   font-size: 20px;
   text-align: center;
   font-weight: 500;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 body {

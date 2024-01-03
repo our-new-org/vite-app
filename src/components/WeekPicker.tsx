@@ -34,7 +34,6 @@ const WeekPicker = ({ bookingId }: { bookingId?: string }) => {
 
       if (selectedBooking) {
         setDate(new Date(selectedBooking.date));
-        console.log('im here too', new Date(selectedBooking.date));
         setSelectedSlot(new Date(selectedBooking.startTime));
       }
     } else {
@@ -77,7 +76,7 @@ const WeekPicker = ({ bookingId }: { bookingId?: string }) => {
 
   return (
     <>
-      <h1 className="week-picker__title">Select date</h1>
+      <h1 className="page__secondary__title">Select date</h1>
       <div className="week-picker">
         <div className="select-week">
           <LeftOutlined

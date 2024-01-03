@@ -31,7 +31,7 @@ const EditBookingPage = () => {
       </div>
       <WeekPicker bookingId={bookingId} />
       <SlotPicker />
-      <div style={{ padding: '20px' }}>
+      <div style={{ padding: '20px', width: '100%', maxWidth: '640px' }}>
         <Button
           disabled={!selectedSlot}
           type="primary"
