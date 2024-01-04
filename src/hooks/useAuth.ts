@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useAuthStore } from '../store/authStore';
 import supabase from '../libs/supabase';
 import { useNavigate } from 'react-router-dom';
-import { delay } from '../utils';
 
 export const useAuth = () => {
   const { fetchUser, setSession, setUser } = useAuthStore();
@@ -10,11 +9,6 @@ export const useAuth = () => {
   const scrollToLogin = () => {
     const elementToScrollTo = document.querySelector('.login-container')!;
     elementToScrollTo.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  };
-
-  const delayLogin = async () => {
-    await delay(800);
-    navigate('/dashboard');
   };
 
   useEffect(() => {
@@ -29,7 +23,7 @@ export const useAuth = () => {
         navigate('/');
       }
       if (_event === 'SIGNED_IN') {
-        delayLogin();
+        navigate('/dashboard');
       }
     });
 
