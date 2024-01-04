@@ -8,11 +8,14 @@ import MenuDrawer from './MenuDrawer';
 import { useWindowSize } from '@uidotdev/usehooks';
 import supabase from '../libs/supabase';
 
+
 const Navbar = () => {
   const { user } = useAuthStore();
   const size = useWindowSize();
   const [drawerVisible, setDrawerVisible] = useState(false);
   const mobileView = size.width ? (size.width < 600 ? true : false) : false;
+
+
   const showDrawer = () => {
     setDrawerVisible(true);
   };

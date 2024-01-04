@@ -21,10 +21,6 @@
     margin-left: 10px;
   }
 
-  .booking__label {
-    font-weight: 600;
-  }
-
   .booking-edit {
     color: var(--action-color);
     font-size: 18px;
@@ -38,4 +34,8 @@
     padding: 10px;
     background-color: rgba($color: #ffffff, $alpha: 0.3);
   }
+}
+
+.booking__label {
+  font-weight: 600;
 }
