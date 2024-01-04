@@ -5,6 +5,7 @@ import {
   setMinutes,
   isToday,
   isTomorrow,
+  setSeconds,
 } from 'date-fns';
 import { Booking } from '../types';
 
@@ -48,10 +49,16 @@ export function getDayOfWeek(dateString: string): string {
 }
 
 export function isSlotBooked(slot: Date, bookings: Booking[]) {
-  return bookings.some(
-    (booking) =>
-      new Date(slot).getTime() === new Date(booking.startTime).getTime(),
+  const formatNew = (date: Date) =>
+    format(
+      setSeconds(setMinutes(setHours(date, 0), 0), 0),
+      'yyyy-MM-dd HH:mm:ss',
+    );
+
+  const data = bookings.some(
+    (booking) => formatNew(slot) === formatNew(new Date(booking.startTime)),
   );
+  return data;
 }
 
 export function delay(time: number) {
