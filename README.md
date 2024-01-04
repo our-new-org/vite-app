@@ -1,30 +1,21 @@
-# React + TypeScript + Vite
+# SharedNest - Facility Booking Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to SharedNest, your go-to Facility Booking Application! This app enables residents to easily book amenities provided by the association within their residential complex. Efficiently manage bookings, including editing and canceling reservations, all through a user-friendly interface.
 
-Currently, two official plugins are available:
+- **Visit project:** [https://our-new-org.github.io/vite-app/](https://our-new-org.github.io/vite-app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Test Login Credentials
 
-## Expanding the ESLint configuration
+Use the following credentials to log in and explore the application:
+- **Email:** test@salt.dev
+- **Password:** episalt
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technology Stack
 
-- Configure the top-level `parserOptions` property like this:
+- **Frontend:** React, Vite, Framer Motion, Zustand.
+- **Backend:**  Express, Node.js, Supabase, Prisma.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Team Members
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Johan
+- Gayathri
