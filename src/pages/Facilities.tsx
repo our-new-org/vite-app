@@ -12,14 +12,16 @@ const Facilities = () => {
 
   return (
     <AnimatedDiv>
-      <h1 className="page__title">Facilites</h1>
-      <h2 className="page__description">
-        Indulge in convenience and comfort with our array of amenities.
-      </h2>
-      <div className="grid-container">
-        {facilities?.map((facility) => (
-          <FacilityCard key={facility.id} facility={facility} />
-        ))}
+      <div style={{ marginTop: '80px' }}>
+        <h1 className="page__title">Facilites</h1>
+        <h2 className="page__description">
+          Indulge in convenience and comfort with our array of amenities.
+        </h2>
+        <div className="grid-container">
+          {facilities?.map((facility) => (
+            <FacilityCard key={facility.id} facility={facility} />
+          ))}
+        </div>
       </div>
     </AnimatedDiv>
   );

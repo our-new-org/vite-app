@@ -25,6 +25,7 @@ const Facility = () => {
 
   return (
     <AnimatedDiv>
+      <div style={{ marginTop: '71px' }}></div>
       <div className="image-container">
         <img
           src={facility.image}

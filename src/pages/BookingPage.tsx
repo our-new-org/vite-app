@@ -53,46 +53,48 @@ const BookingPage = () => {
 
   return (
     <AnimatedDiv>
-      <h1 className="page__title">Booking</h1>
-      {booking && (
-        <Card
-          className="shadow booking-details-wrapper"
-          key={booking.id}
-          size="small"
-          extra={null}>
-          <p>
-            <span className="booking__label">When:</span>{' '}
-            {getDayOfWeek(booking.date)} {formatDate(booking.date)}
-          </p>
-          <p>
-            <span className="booking__label">Time:</span>{' '}
-            {formatTime(booking.startTime)} - {formatTime(booking.endTime)}
-          </p>
-          <Divider />
-          <Flex justify="end" gap={20}>
-            <Button
-              type="primary"
-              onClick={() =>
-                navigate(
-                  `/dashboard/bookings/${bookingId}/${facility?.id}/edit`,
-                )
-              }>
-              Edit
-            </Button>
-            <Button
-              type="dashed"
-              onClick={() => handleCancelBooking(booking.id)}>
-              Delete
-            </Button>
-          </Flex>
-          <ConfirmationModal
-            open={isModalVisible}
-            onConfirm={() => handleConfirm(booking.id)}
-            onCancel={handleCancelModal}
-          />
-        </Card>
-      )}
-      {facility && <FacilityInfo facility={facility} />}
+      <div style={{ marginTop: '60px', padding: '20px' }}>
+        <h1 className="page__title">Booking</h1>
+        {booking && (
+          <Card
+            className="shadow booking-details-wrapper"
+            key={booking.id}
+            size="small"
+            extra={null}>
+            <p>
+              <span className="booking__label">When:</span>{' '}
+              {getDayOfWeek(booking.date)} {formatDate(booking.date)}
+            </p>
+            <p>
+              <span className="booking__label">Time:</span>{' '}
+              {formatTime(booking.startTime)} - {formatTime(booking.endTime)}
+            </p>
+            <Divider />
+            <Flex justify="end" gap={20}>
+              <Button
+                type="primary"
+                onClick={() =>
+                  navigate(
+                    `/dashboard/bookings/${bookingId}/${facility?.id}/edit`,
+                  )
+                }>
+                Edit
+              </Button>
+              <Button
+                type="dashed"
+                onClick={() => handleCancelBooking(booking.id)}>
+                Delete
+              </Button>
+            </Flex>
+            <ConfirmationModal
+              open={isModalVisible}
+              onConfirm={() => handleConfirm(booking.id)}
+              onCancel={handleCancelModal}
+            />
+          </Card>
+        )}
+        {facility && <FacilityInfo facility={facility} />}
+      </div>
     </AnimatedDiv>
   );
 };

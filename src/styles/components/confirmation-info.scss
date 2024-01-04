@@ -1,14 +1,12 @@
 .confirmation-container {
-  max-width: 500px;
-  margin: 0 auto;
-  flex-grow: 1;
   padding: 20px;
+  margin-top: 171px;
+  border-radius: var(--roundness);
+  max-width: 500px;
+  flex-grow: 1;
   margin-bottom: 50px;
-  border: 2px solid var(--primary-color);
-  border-radius: 8px;
   background-color: var(--secondary-color);
   box-shadow: 0 0 10px var(--shadow);
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
 }

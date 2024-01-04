@@ -12,7 +12,7 @@ const UserProfile = ({ baseUrl }: { baseUrl: string }) => {
   return (
     <section className="user-card">
       <div className="user-card_inner">
-        <Avatar shape="square" size={80} icon={<UserOutlined />} />
+        <Avatar shape="square" size={60} icon={<UserOutlined />} />
         <div className="user-card__content">
           <span className="user-card__email">{user?.email}</span>
           <div>
