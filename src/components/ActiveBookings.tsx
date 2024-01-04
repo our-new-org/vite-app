@@ -6,24 +6,32 @@ import { Link } from 'react-router-dom';
 import { Booking } from '../types';
 import { useBookingStore } from '../store/bookingStore';
 import ConfirmationModal from './ConfirmationModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ActiveBookings = () => {
   const { user } = useAuthStore();
   const { cancelBooking } = useBookingStore();
   const [isModalVisible, setModalVisible] = useState(false);
+  const [currentId, setCurrentId] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (currentId) {
+      setModalVisible(true);
+    }
+  }, [currentId]);
+
+  const handleConfirm = () => {
+    if (currentId) {
+      cancelBooking(currentId);
+    }
+    setModalVisible(false);
+  };
 
   const handleCancelBooking = (bookingId: number) => {
     if (bookingId) {
+      setCurrentId(bookingId);
       setModalVisible(true);
     }
-  };
-
-  const handleConfirm = (bookingId: number) => {
-    if (bookingId !== undefined) {
-      cancelBooking(bookingId);
-    }
-    setModalVisible(false);
   };
 
   const handleCancelModal = () => {
@@ -77,11 +85,6 @@ const ActiveBookings = () => {
               <span className="booking__label">Time:</span>{' '}
               {formatTime(booking.startTime)} - {formatTime(booking.endTime)}
             </p>
-            <ConfirmationModal
-              open={isModalVisible}
-              onConfirm={() => handleConfirm(booking.id)}
-              onCancel={handleCancelModal}
-            />
           </Card>
         ))
       ) : (
@@ -89,6 +92,11 @@ const ActiveBookings = () => {
           You have no active bookings..
         </span>
       )}
+      <ConfirmationModal
+        open={isModalVisible}
+        onConfirm={() => handleConfirm()}
+        onCancel={handleCancelModal}
+      />
     </div>
   );
 };

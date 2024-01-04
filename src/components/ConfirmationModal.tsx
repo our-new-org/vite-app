@@ -1,12 +1,18 @@
 import { Modal } from 'antd';
 
+
 type ConfirmationModalProps = {
-    onConfirm: () => void;
+    onConfirm?: () => void;
     onCancel: () => void;
     open: boolean;
+    
   };
 
-const ConfirmationModal = ({ onConfirm, onCancel,open }: ConfirmationModalProps) => {
+const ConfirmationModal = ({ onConfirm, onCancel,open}: ConfirmationModalProps) => {
+
+
+  
+ 
   return (
     <Modal
       title="Confirmation"
