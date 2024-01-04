@@ -17,19 +17,15 @@ const Footer = () => {
           <h5 className="footer__content__title">Made by</h5>
           <div className="footer__content__github">
             <GithubOutlined className="footer__content__icon" />
-            <Link
-              to={{ pathname: 'https://github.com/abdejohan' }}
-              target="_blank">
+            <a href="https://github.com/abdejohan" target="_blank">
               Johan
-            </Link>
+            </a>
           </div>
           <div className="footer__content__github">
             <GithubOutlined className="footer__content__icon" />
-            <Link
-              to={{ pathname: 'https://github.com/sgayathrii' }}
-              target="_blank">
+            <a href="https://github.com/sgayathrii" target="_blank">
               Gayathri
-            </Link>
+            </a>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ const baseUrl = import.meta.env.PROD ? '/vite-app' : '/';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ConfigProvider
-    theme={{ token: { colorPrimary: '#e99ea9', borderRadius: 5 } }}>
+    theme={{ token: { colorPrimary: '#ef7ca0', borderRadius: 5 } }}>
     <HashRouter>
       <Navbar />
       <UserProfile baseUrl={baseUrl} />
