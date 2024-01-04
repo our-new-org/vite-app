@@ -27,7 +27,7 @@
   }
 
   .navigation__link {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--action-color);
     &:hover {
@@ -60,9 +60,11 @@
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: bold;
+    
   }
 
   .menu-list__link {
+    width: 100%; 
     display: block;
     padding: 8px 16px;
     text-decoration: none;

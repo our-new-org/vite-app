@@ -29,12 +29,20 @@ const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
       <ul className="menu-list">
         <li className="menu-list__item">
           {user ? (
-            <Link
-              to="/dashboard"
-              onClick={handleLinkClick}
-              className="menu-list__link">
-              My Bookings
-            </Link>
+            <>
+              <Link
+                to="/dashboard"
+                onClick={handleLinkClick}
+                className="menu-list__link">
+                My Bookings
+              </Link>
+              <Link
+                className="menu-list__link"
+                to="/dashboard/facilities"
+                onClick={handleLinkClick}>
+                Make a Booking
+              </Link>
+            </>
           ) : (
             <Link
               to={''}
@@ -47,10 +55,8 @@ const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
               Login
             </Link>
           )}
-        </li>
-        {session && (
-          <>
-            <li className="menu-list__item">
+          {session && (
+            <>
               <Link
                 to="/"
                 onClick={() => {
@@ -60,9 +66,9 @@ const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
                 className="menu-list__link">
                 Sign out
               </Link>
-            </li>
-          </>
-        )}
+            </>
+          )}
+        </li>
       </ul>
     </Drawer>
   );

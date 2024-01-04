@@ -53,7 +53,7 @@ const BookingPage = () => {
 
   return (
     <AnimatedDiv>
-      <h1 className="page__title">Booking</h1>
+      <h1 className="page__title">{booking?.facilityName}</h1>
       {booking && (
         <Card
           className="shadow booking-details-wrapper"
