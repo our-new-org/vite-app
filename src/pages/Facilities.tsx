@@ -14,7 +14,7 @@ const Facilities = () => {
     <AnimatedDiv>
       <h1 className="page__title">Facilites</h1>
       <h2 className="page__description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Indulge in convenience and comfort with our array of amenities.
       </h2>
       <div className="grid-container">
         {facilities?.map((facility) => (
