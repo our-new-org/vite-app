@@ -26,7 +26,7 @@ const Footer = () => {
           <div className="footer__content__github">
             <GithubOutlined className="footer__content__icon" />
             <Link
-              to={{ pathname: 'https://github.com/abdejohan' }}
+              to={{ pathname: 'https://github.com/sgayathrii' }}
               target="_blank">
               Gayathri
             </Link>
