@@ -5,7 +5,6 @@ import AnimatedRoutes from './components/AnimatedRoutes.tsx';
 import Navbar from './components/Navbar.tsx';
 import { ConfigProvider } from 'antd';
 import UserProfile from './components/UserProfile.tsx';
-import Footer from './components/Footer.tsx';
 const baseUrl = import.meta.env.PROD ? '/vite-app' : '/';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -15,7 +14,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Navbar />
       <UserProfile baseUrl={baseUrl} />
       <AnimatedRoutes />
-      <Footer />
     </HashRouter>
   </ConfigProvider>,
 );

@@ -8,8 +8,8 @@ export const useAuth = () => {
   const { fetchUser, setSession, setUser } = useAuthStore();
   const navigate = useNavigate();
   const scrollToLogin = () => {
-    const elementToScrollTo = document.querySelector('.login-scroll')!;
-    elementToScrollTo.scrollIntoView({ behavior: 'smooth' });
+    const elementToScrollTo = document.querySelector('.login-container')!;
+    elementToScrollTo.scrollIntoView({ behavior: 'smooth', block: 'end' });
   };
 
   const delayLogin = async () => {

@@ -28,7 +28,7 @@ const Navbar = () => {
           display: 'flex',
           alignItems: 'center',
         }}>
-        <Link to="/">
+        <Link to="#">
           <img src={logo} alt="log" height={30} width={40} />
         </Link>
         <span style={{ color: '#ef7ca0' }}>Shared</span>Nest
