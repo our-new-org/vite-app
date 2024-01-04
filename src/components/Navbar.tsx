@@ -1,5 +1,5 @@
 import { UserOutlined } from '@ant-design/icons';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo-image.png';
 import { Avatar, Button, Flex } from 'antd';
 import { useAuthStore } from '../store/authStore';
 import { Link } from 'react-router-dom';
@@ -23,10 +23,15 @@ const Navbar = () => {
 
   return (
     <nav className="navigation">
-      <span>
+      <span
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}>
         <Link to="/">
-          <img src={logo} alt="log" height={30} width={70} />
+          <img src={logo} alt="log" height={30} width={40} />
         </Link>
+        <span style={{ color: '#ef7ca0' }}>Shared</span>Nest
       </span>
       <span>
         <Flex gap={10}>
