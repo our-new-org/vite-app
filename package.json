@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://our-new-org.github.io/vite-app/",
+  "homepage": "https://team-git-install-npm.github.io/shared-nest/",
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
