@@ -28,6 +28,10 @@
   box-shadow: var(--shadow);
   overflow: hidden;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .img {
     width: 100%;
     height: auto;

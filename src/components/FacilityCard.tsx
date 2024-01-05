@@ -9,7 +9,9 @@ type FacilityCardProp = {
 const FacilityCard = ({ facility }: FacilityCardProp) => {
   const navigate = useNavigate();
   return (
-    <div className="grid-item">
+    <div
+      className="grid-item"
+      onClick={() => navigate(`/dashboard/facilities/${facility.id}`)}>
       <img src={facility.image} alt="facility image" className="img" />
       <div className="item-absolute-wrapper">
         <div className="item-content">
