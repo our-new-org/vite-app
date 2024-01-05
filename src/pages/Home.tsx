@@ -76,7 +76,7 @@ export default function Home() {
                     theme: ThemeSupa,
                     style: {
                       input: { border: '1px solid #ef7ca0' },
-                      container: { color: 'white', minWidth: '300px' },
+                      container: { color: 'white', minWidth: '250px' },
                       anchor: {
                         color: '#ef7ca0',
                         textDecoration: 'none',
