@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { Button, Card, Divider, Flex } from 'antd';
 import { getDayOfWeek, formatDate, formatTime } from '../utils';
@@ -54,13 +54,15 @@ const BookingPage = () => {
   return (
     <AnimatedDiv>
       <div style={{ marginTop: '60px', padding: '20px' }}>
-        <h1 className="page__title">Booking Details</h1>
+        <h1 className="page__title">Booking Overview</h1>
+        <div className="booking-details">
         {booking && (
           <Card
             className="shadow booking-details-wrapper"
             key={booking.id}
             size="small"
             extra={null}>
+            <h4 className="booking-details-wrapper__heading">Booking Details</h4>
             <p>
               <span className="booking__label">Facility: </span>
               {booking.facilityName}
@@ -102,6 +104,10 @@ const BookingPage = () => {
           </Card>
         )}
         {facility && <FacilityInfo facility={facility} />}
+        </div>
+        <Link to="/dashboard" className="confirmation-link">
+        Go Back to Dashboard
+      </Link>
       </div>
     </AnimatedDiv>
   );
