@@ -4,25 +4,30 @@ import supabase from '../libs/supabase';
 import { useNavigate } from 'react-router-dom';
 
 export const useAuth = () => {
-  const { fetchUser, setSession, session: storedSessions } = useAuthStore();
+  const { fetchUser, setSession, setUser } = useAuthStore();
   const navigate = useNavigate();
-
   const scrollToLogin = () => {
     const elementToScrollTo = document.querySelector('.login-container')!;
     elementToScrollTo.scrollIntoView({ behavior: 'smooth', block: 'end' });
   };
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (session?.user?.id == storedSessions?.user?.id) {
-        console.log('they did match');
-        console.log(session?.user?.id, storedSessions?.user?.id);
-        return;
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, supabaseSession) => {
+      setSession(supabaseSession);
+      supabaseSession && fetchUser();
+
+      if (_event === 'SIGNED_OUT') {
+        setUser(null);
+        navigate('/');
       }
-      setSession(session);
-      fetchUser();
-      navigate('/dashboard');
+      if (_event === 'SIGNED_IN') {
+        navigate('/dashboard');
+      }
     });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   return { scrollToLogin };
