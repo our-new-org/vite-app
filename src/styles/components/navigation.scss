@@ -24,6 +24,23 @@
     &:hover {
       background-color: var(--action-color-hover);
     }
+
+   
+  }
+
+  .brand-link {
+    display: flex;
+    align-items: center;
+    color: #ef7ca0;
+    text-decoration: none;
+  }
+
+  .brand-link img {
+    margin-right: 1px; // Adjust the margin as needed
+  }
+
+  .brand-link:hover {
+    text-decoration: none; 
   }
 
   .navigation__link {

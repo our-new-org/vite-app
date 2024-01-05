@@ -27,14 +27,11 @@ const Navbar = () => {
   return (
     <nav className="navigation">
       <span
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-        }}>
-        <Link to="#">
+        >
+        <Link to="/" className="brand-link">
           <img src={logo} alt="log" height={30} width={40} />
+          Shared<span style={{ color: 'black' }}>Nest</span>
         </Link>
-        <span style={{ color: '#ef7ca0' }}>Shared</span>Nest
       </span>
       <span>
         <Flex gap={10}>

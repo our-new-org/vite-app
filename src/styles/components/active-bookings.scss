@@ -39,3 +39,35 @@
 .booking__label {
   font-weight: 600;
 }
+
+.edit-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.edit-menu__link {
+  padding: 3px 0;
+  display: block;
+  width: 100%;
+  text-align: left;
+  color: var(--action-color); 
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: var(--action-color-hover); 
+  }
+}
+
+.edit-menu__button {
+  padding: 3px 0;
+  display: block;
+  width: 100%;
+  text-align: left;
+  color: var(--action-color); 
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: var(--action-color-hover);   
+  }
+}

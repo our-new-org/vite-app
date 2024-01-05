@@ -7,9 +7,9 @@ const Dashboard = () => {
   return (
     <AnimatedDiv>
       <h1 style={{ marginTop: '100px' }} className="page__title">
-        Bookings
+        Manage Your Bookings
       </h1>
-      <h2 className="page__description">Keep track of your bookings here.</h2>
+      <h2 className="page__description">Track and manage your bookings seamlessly.</h2>
       <ActiveBookings />
       <MakeABooking />
     </AnimatedDiv>

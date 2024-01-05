@@ -39,18 +39,21 @@ const ActiveBookings = () => {
   };
 
   const renderEditMenu = (booking: Booking) => (
-    <Flex vertical align="start">
-      <Link to={`/dashboard/bookings/${booking.id}`} type="link">
+    <Flex vertical align="start" className="edit-menu">
+      <Link to={`/dashboard/bookings/${booking.id}`} className="edit-menu__link">
         Details
       </Link>
-
       <Link
         to={`/dashboard/bookings/${booking.id}/${booking.facilityId}/edit`}
-        type="link">
+        className="edit-menu__link">
         Edit
       </Link>
-      <Button type="link" onClick={() => handleCancelBooking(booking.id)}>
-        Delete
+      <Button
+        type="link"
+        className="edit-menu__button"
+        onClick={() => handleCancelBooking(booking.id)}
+      >
+        Cancel
       </Button>
     </Flex>
   );

@@ -54,7 +54,7 @@ const BookingPage = () => {
   return (
     <AnimatedDiv>
       <div style={{ marginTop: '60px', padding: '20px' }}>
-        <h1 className="page__title">Booking</h1>
+        <h1 className="page__title">Booking Details</h1>
         {booking && (
           <Card
             className="shadow booking-details-wrapper"
@@ -62,12 +62,20 @@ const BookingPage = () => {
             size="small"
             extra={null}>
             <p>
+              <span className="booking__label">Facility: </span>
+              {booking.facilityName}
+            </p>
+            <p>
               <span className="booking__label">When:</span>{' '}
               {getDayOfWeek(booking.date)} {formatDate(booking.date)}
             </p>
             <p>
               <span className="booking__label">Time:</span>{' '}
               {formatTime(booking.startTime)} - {formatTime(booking.endTime)}
+            </p>
+            <p>
+              <span className="booking__label">Created On: </span>
+              {formatDate(String(booking.createdAt))}
             </p>
             <Divider />
             <Flex justify="end" gap={20}>
@@ -83,7 +91,7 @@ const BookingPage = () => {
               <Button
                 type="dashed"
                 onClick={() => handleCancelBooking(booking.id)}>
-                Delete
+                Cancel
               </Button>
             </Flex>
             <ConfirmationModal
