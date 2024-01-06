@@ -8,7 +8,7 @@ import { useFacilityStore } from '../store/facilityStore';
 import { Button } from 'antd';
 import { useDatePickerStore } from '../store/datePickerStore';
 import useBooking from '../hooks/useBooking'; // Import your custom hook
-import { ClockCircleOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined, LoadingOutlined } from '@ant-design/icons';
 import { PiUsersThree } from 'react-icons/pi';
 import { IoIosArrowDown } from 'react-icons/io';
 import { MdOutlineTimer } from 'react-icons/md';
@@ -24,7 +24,25 @@ const Facility = () => {
   }, [id, fetchFacility]);
 
   if (!facility) {
-    return <div>Loading facility data...</div>;
+    return (
+      <AnimatedDiv>
+        <div
+          style={{
+            opacity: 0.3,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+          <div>
+            <LoadingOutlined
+              spin
+              style={{ fontSize: 80, marginBottom: '20px' }}
+            />
+          </div>
+          Loading facility data...
+        </div>
+      </AnimatedDiv>
+    );
   }
 
   return (
