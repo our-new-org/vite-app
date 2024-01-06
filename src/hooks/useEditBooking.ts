@@ -39,7 +39,7 @@ const useEditBooking = (bookingId: string | undefined | null) => {
       });
 
       if (!response.ok) {
-        throw new Error('Booking update failed');
+        throw new Error('Booking update failedd');
       }
 
       const result = await response.json();
