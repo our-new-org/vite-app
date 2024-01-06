@@ -1,0 +1,30 @@
+.booking-details {
+  display: flex;
+  flex-direction: column; /* Display as a column in mobile view */
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.shadow {
+  box-shadow: var(--shadow);
+  //border: 1px solid var(--success);
+}
+
+.booking-details-wrapper,
+.facility-info {
+  flex: 1;
+}
+
+.booking-details-wrapper__heading {
+  margin-bottom: 10px;
+}
+
+.facility-info {
+  flex: 2;
+}
+
+@media (min-width: 768px) {
+  .booking-details {
+    flex-direction: row;
+  }
+}

@@ -1,5 +1,4 @@
 .facility-info {
-  margin-top: 20px;
   box-shadow: var(--shadow);
   //border: 1px solid var(--action-color);
 
@@ -19,6 +18,10 @@
     flex: 1;
     padding: 0 16px;
   }
+  
+  .facility-info__label{
+    display: none;
+  }
 
   .facility-info__data {
     font-weight: lighter;
@@ -33,5 +36,11 @@
 
   .facility-info__description {
     margin-top: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .facility-info__label{
+      display: contents;
+    }
   }
 }

@@ -6,7 +6,7 @@ import {
 } from '@ant-design/icons';
 import { Facility } from '../types';
 import { Card } from 'antd';
-import { Link } from 'react-router-dom';
+
 
 type FacilityInfoProps = {
   facility: Facility;
@@ -20,21 +20,24 @@ const FacilityInfo = ({ facility }: FacilityInfoProps) => {
         <img src={facility.image} alt="" className="facility-info__image" />
         <div className="facility-info__details">
           <h3>
-            <TeamOutlined className="icon" /> Capacity:
+            <TeamOutlined className="icon" />
+            <span className="facility-info__label">Capacity:</span>
             <span className="facility-info__data">{facility.capacity}</span>
           </h3>
           <h3>
-            <UnlockOutlined className="icon" /> Opens:
+            <UnlockOutlined className="icon" /> 
+            <span className="facility-info__label">Opens:</span>
             <span className="facility-info__data">{`${facility.openingHour}:00`}</span>
           </h3>
           <h3>
-            <LockOutlined className="icon" /> Closes:
+            <LockOutlined className="icon" /> 
+            <span className="facility-info__label">Closes:</span>
             <span className="facility-info__data">{`${facility.closingHour}:00`}</span>
           </h3>
           <h3>
-            <ClockCircleOutlined className="icon" /> Slot duration:
+            <ClockCircleOutlined className="icon" /> 
+            <span className="facility-info__label">Slot duration:</span>
             <span className="facility-info__data">
-              {' '}
               {slotDurationInHours}{' '}
               {slotDurationInHours === 1 ? 'hour' : 'hours'}
             </span>
@@ -42,9 +45,7 @@ const FacilityInfo = ({ facility }: FacilityInfoProps) => {
         </div>
       </div>
       <p className="facility-info__description">{facility?.description}</p>
-      <Link to="/dashboard" className="confirmation-link">
-        Go Back to Dashboard
-      </Link>
+     
     </Card>
   );
 };
