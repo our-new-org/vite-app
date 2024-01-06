@@ -24,8 +24,6 @@
     &:hover {
       background-color: var(--action-color-hover);
     }
-
-   
   }
 
   .brand-link {
@@ -40,7 +38,7 @@
   }
 
   .brand-link:hover {
-    text-decoration: none; 
+    text-decoration: none;
   }
 
   .navigation__link {
@@ -53,10 +51,11 @@
   }
 
   .navigation__avatar {
-    background-color: var(--action-color);
+    color: var(--action-color);
 
+    font-size: 25px;
     &:hover {
-      background-color: var(--action-color-hover);
+      color: var(--action-color-hover);
       cursor: pointer;
     }
   }
@@ -77,11 +76,10 @@
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: bold;
-    
   }
 
   .menu-list__link {
-    width: 100%; 
+    width: 100%;
     display: block;
     padding: 8px 16px;
     text-decoration: none;

@@ -1,20 +1,18 @@
-import { UserOutlined } from '@ant-design/icons';
 import logo from '../assets/logo-image.png';
-import { Avatar, Button, Flex } from 'antd';
+import { Button, Flex } from 'antd';
 import { useAuthStore } from '../store/authStore';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import MenuDrawer from './MenuDrawer';
 import { useWindowSize } from '@uidotdev/usehooks';
 import supabase from '../libs/supabase';
-
+import { TiThMenu } from 'react-icons/ti';
 
 const Navbar = () => {
   const { user } = useAuthStore();
   const size = useWindowSize();
   const [drawerVisible, setDrawerVisible] = useState(false);
   const mobileView = size.width ? (size.width < 600 ? true : false) : false;
-
 
   const showDrawer = () => {
     setDrawerVisible(true);
@@ -26,8 +24,7 @@ const Navbar = () => {
 
   return (
     <nav className="navigation">
-      <span
-        >
+      <span>
         <Link to="/" className="brand-link">
           <img src={logo} alt="log" height={30} width={40} />
           Shared<span style={{ color: 'black' }}>Nest</span>
@@ -50,10 +47,7 @@ const Navbar = () => {
           )}
           <MenuDrawer visible={drawerVisible} onClose={onCloseDrawer} />
           {mobileView && (
-            <Avatar
-              className="navigation__avatar"
-              icon={<UserOutlined onClick={showDrawer} />}
-            />
+            <TiThMenu className="navigation__avatar" onClick={showDrawer} />
           )}
         </Flex>
       </span>
