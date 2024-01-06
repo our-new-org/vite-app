@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const baseUrl = mode === 'production' ? '/team-git-install-npm' : '/';
+  const baseUrl = mode === 'production' ? '/shared-nest' : '/';
 
   return {
     plugins: [react()],
