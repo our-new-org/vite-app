@@ -1,6 +1,8 @@
 .footer {
   display: flex;
   justify-content: center;
+  margin-top: 200px;
+  padding: 0px 20px;
 
   a {
     text-decoration: none;
@@ -13,27 +15,32 @@
   }
 
   .footer__content {
-    max-width: 900px;
+    max-width: 1200px;
     padding: 20px 0px;
     border-top: 1px solid var(--secondary-color);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     flex-grow: 1;
+    align-items: center;
+    justify-content: center;
   }
 
   .footer__content__contact {
     padding: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 6px;
   }
 
   .footer__content__title {
+    display: flex;
+    align-items: center;
     opacity: 0.6;
   }
 
   .footer__content__github {
     display: flex;
+    align-items: center;
     flex-flow: row nowrap;
   }
 
@@ -41,5 +48,12 @@
     color: var(--action-color);
     height: 22px;
     width: 22px;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer__content {
+    flex-direction: row !important;
+    justify-content: space-between !important;
   }
 }
