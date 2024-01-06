@@ -7,6 +7,7 @@ import { Booking } from '../types';
 import { useBookingStore } from '../store/bookingStore';
 import ConfirmationModal from './ConfirmationModal';
 import { useEffect, useState } from 'react';
+import MakeABooking from './MakeABooking';
 
 const ActiveBookings = () => {
   const { user } = useAuthStore();
@@ -40,7 +41,9 @@ const ActiveBookings = () => {
 
   const renderEditMenu = (booking: Booking) => (
     <Flex vertical align="start" className="edit-menu">
-      <Link to={`/dashboard/bookings/${booking.id}`} className="edit-menu__link">
+      <Link
+        to={`/dashboard/bookings/${booking.id}`}
+        className="edit-menu__link">
         Details
       </Link>
       <Link
@@ -51,8 +54,7 @@ const ActiveBookings = () => {
       <Button
         type="link"
         className="edit-menu__button"
-        onClick={() => handleCancelBooking(booking.id)}
-      >
+        onClick={() => handleCancelBooking(booking.id)}>
         Cancel
       </Button>
     </Flex>
@@ -67,6 +69,7 @@ const ActiveBookings = () => {
 
   return (
     <div className="active-bookings">
+      <MakeABooking />
       <h2 className="page__secondary__title">Active Bookings</h2>
       {user && user?.bookings.length > 0 ? (
         user.bookings.map((booking) => (
