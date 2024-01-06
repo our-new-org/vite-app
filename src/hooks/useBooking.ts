@@ -14,7 +14,7 @@ const useBooking = () => {
   const navigate = useNavigate();
   const { user, fetchUser } = useAuthStore();
   const { facility } = useFacilityStore();
-  const { selectedDate, selectedSlot } = useDatePickerStore();
+  const { selectedDate, selectedSlot, setSelectedSlot } = useDatePickerStore();
   const { setBookingDetails } = useBookingStore();
 
   const handleBooking = useCallback(async () => {
@@ -45,6 +45,7 @@ const useBooking = () => {
 
       const result = await response.json();
       fetchUser();
+      setSelectedSlot(null);
       setBookingDetails(result);
       navigate('/confirmation');
     } catch (error) {
