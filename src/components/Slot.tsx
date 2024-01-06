@@ -48,7 +48,8 @@ const Slot = ({
               'HH:mm',
             )}`}
           </p>
-          <small style={{ letterSpacing: '0.001px', opacity: 0.4 }}>
+          <small
+            style={{ letterSpacing: '0.001px', opacity: 0.7, fontWeight: 400 }}>
             {!checkIfOvernightBooking() ? '' : 'Next day checkout'}
           </small>
         </div>

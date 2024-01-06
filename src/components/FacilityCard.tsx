@@ -23,6 +23,10 @@ const FacilityCard = ({ facility }: FacilityCardProp) => {
     <div className="grid-item" onClick={handleClick}>
       <img src={facility.image} alt="facility image" className="img" />
       <div className="item-absolute-wrapper">
+        <div className="available-slots">
+          <div className="round" />
+          <small>Available Today</small>
+        </div>
         <div className="item-content">
           <h4>{facility.name}</h4>
           <Button type="primary" size="small" onClick={handleClick}>
