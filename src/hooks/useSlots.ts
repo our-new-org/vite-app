@@ -12,7 +12,7 @@ const useSlots = (selectedDate: Date, facility: Facility | null) => {
       return;
     }
 
-    if (facility.slotDuration === 0) {
+    if (facility.openingHour === 12 && facility.closingHour === 12) {
       // If slotDuration is 0, book for the entire day
       const daySlot = [combineDateAndTime(selectedDate, facility.openingHour)];
       setSlots(daySlot);

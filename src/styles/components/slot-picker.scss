@@ -28,6 +28,9 @@
       .slot-item__details__label {
         font-weight: 600;
         opacity: 0.6;
+        gap: 10px;
+        display: flex;
+        align-items: end;
         letter-spacing: 0.08rem;
       }
       .slot-item__details__content {
@@ -40,6 +43,8 @@
 
       .slot-item__arrow {
         color: var(--action-color);
+        font-weight: bold;
+        font-size: 30px;
       }
     }
     .slot-item--disabled {

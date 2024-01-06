@@ -12,7 +12,7 @@ const MakeABooking = () => {
   };
 
   return (
-    <div style={{ padding: '20px', width: '100%', maxWidth: '640px' }}>
+    <div style={{ padding: '20px', width: '100%', maxWidth: '600px' }}>
       <Button
         block
         type="primary"

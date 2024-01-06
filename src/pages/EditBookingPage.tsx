@@ -28,7 +28,7 @@ const EditBookingPage = () => {
         <div
           style={{
             width: '100%',
-            maxWidth: '640px',
+            maxWidth: '600px',
             display: 'flex',
             flexDirection: 'column',
             gap: '20px',

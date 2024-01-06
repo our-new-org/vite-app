@@ -1,5 +1,9 @@
 .facility {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   .book__now {
     display: flex;
     flex-flow: column nowrap;

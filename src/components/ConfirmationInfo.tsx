@@ -1,14 +1,15 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useBookingStore } from '../store/bookingStore';
 import { format } from 'date-fns';
 import ConfirmationModal from './ConfirmationModal';
 import { useState } from 'react';
 import { Button } from 'antd';
+import AnimatedDiv from './AnimatedDiv';
 
 const ConfirmationInfo = () => {
   const { bookingDetails, cancelBooking } = useBookingStore();
   const [isModalVisible, setModalVisible] = useState(false);
-
+  const navigate = useNavigate();
   const handleCancelBooking = () => {
     if (bookingDetails?.id) {
       setModalVisible(true);
@@ -31,14 +32,14 @@ const ConfirmationInfo = () => {
     ? format(new Date(bookingDetails.date), 'MM-dd-yyyy')
     : '';
   const formattedStartTime = bookingDetails
-    ? format(new Date(bookingDetails.startTime), 'h:mm a')
+    ? format(new Date(bookingDetails.startTime), 'h:mm')
     : '';
   const formattedEndTime = bookingDetails
-    ? format(new Date(bookingDetails.endTime), 'h:mm a')
+    ? format(new Date(bookingDetails.endTime), 'h:mm')
     : '';
 
   return (
-    <div style={{ padding: '20px' }}>
+    <AnimatedDiv>
       <div className="confirmation-container">
         {bookingDetails ? (
           <>
@@ -57,26 +58,32 @@ const ConfirmationInfo = () => {
               <span className="confirmation-paragraph__text">Time Slot: </span>{' '}
               {formattedStartTime} - {formattedEndTime}
             </p>
-            <Button type="primary" onClick={handleCancelBooking}>
-              Cancel Booking
-            </Button>
           </>
         ) : (
           <p>Booking cancelled successfully</p>
         )}
-        <Link
-          to="/dashboard"
+        <Button
+          type="primary"
+          onClick={() => navigate('/dashboard')}
           className="confirmation-link"
           style={{ textAlign: 'center' }}>
-          Go Back to Dashboard
-        </Link>
+          Return to my Bookings
+        </Button>
+        {bookingDetails && (
+          <Button
+            type="text"
+            className="cancel-button"
+            onClick={handleCancelBooking}>
+            Cancel Booking
+          </Button>
+        )}
         <ConfirmationModal
           open={isModalVisible}
           onConfirm={handleConfirm}
           onCancel={handleCancelModal}
         />
       </div>
-    </div>
+    </AnimatedDiv>
   );
 };
 

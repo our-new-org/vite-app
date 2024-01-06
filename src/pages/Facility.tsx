@@ -87,7 +87,7 @@ const Facility = () => {
         {/* <h1 className="page__title">Start Booking</h1> */}
         <WeekPicker />
         <SlotPicker />
-        <div style={{ width: '100%', maxWidth: '640px' }}>
+        <div style={{ width: '100%', maxWidth: '600px' }}>
           <Button
             disabled={!selectedSlot}
             type="primary"

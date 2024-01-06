@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { Button, Card, Divider, Flex } from 'antd';
 import { getDayOfWeek, formatDate, formatTime } from '../utils';
@@ -106,9 +106,6 @@ const BookingPage = () => {
         )}
         {facility && <FacilityInfo facility={facility} />}
       </div>
-      <Link to="/dashboard" className="confirmation-link">
-        Go Back to Dashboard
-      </Link>
     </AnimatedDiv>
   );
 };

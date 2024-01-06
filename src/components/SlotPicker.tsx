@@ -11,11 +11,7 @@ const SlotPicker: React.FC = () => {
   const { selectedDate, selectedSlot, setSelectedSlot } = useDatePickerStore();
 
   const slots = useSlots(selectedDate, facility);
-
-  if (!facility) {
-    return <div>Loading facility data...</div>;
-  }
-
+  if (!facility) return <div>Loading facility data...</div>;
   return (
     <AnimatePresence mode="wait">
       <motion.div

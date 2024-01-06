@@ -17,10 +17,18 @@ const Slot = ({
   disabled = false,
 }: SlotProps) => {
   const { selectedDate, selectedSlot } = useDatePickerStore();
-
   const handleItemColor = () => {
     const isMatch = getTime(Number(selectedSlot)) === getTime(slot);
     if (!disabled) return isMatch ? '#f8dee1' : '';
+  };
+
+  const checkIfOvernightBooking = () => {
+    if (
+      format(slot, 'HH:mm') === format(addMinutes(slot, slotDuration), 'HH:mm')
+    ) {
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -32,13 +40,18 @@ const Slot = ({
         <h5 className="slot-item__details__content">
           {format(selectedDate, 'EEEE dd/MM')}
         </h5>
-        <p className="slot-item__details__label">
-          <ClockCircleOutlined style={{ marginRight: '5px' }} />
-          {`${format(slot, 'HH:mm')} - ${format(
-            addMinutes(slot, slotDuration),
-            'HH:mm',
-          )}`}
-        </p>
+        <div className="slot-item__details__label">
+          <p>
+            <ClockCircleOutlined style={{ marginRight: '5px' }} />
+            {`${format(slot, 'HH:mm')} - ${format(
+              addMinutes(slot, slotDuration),
+              'HH:mm',
+            )}`}
+          </p>
+          <small style={{ letterSpacing: '0.001px', opacity: 0.4 }}>
+            {!checkIfOvernightBooking() ? '' : 'Next day checkout'}
+          </small>
+        </div>
       </div>
       <RightOutlined className="slot-item__arrow" />
     </li>
