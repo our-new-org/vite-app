@@ -10,7 +10,7 @@ import {
 import { Booking } from '../types';
 
 export const combineDateAndTime = (baseDate: Date, hours: number): Date => {
-  return setMinutes(setHours(baseDate, hours), 0);
+  return setSeconds(setMinutes(setHours(baseDate, hours), 0), 0);
 };
 
 export const addDurationToDate = (inputDate: Date, slotDuration: number) => {
@@ -49,16 +49,26 @@ export function getDayOfWeek(dateString: string): string {
 }
 
 export function isSlotBooked(slot: Date, bookings: Booking[]) {
-  const formatNew = (date: Date) =>
-    format(
-      setSeconds(setMinutes(setHours(date, 0), 0), 0),
+  // Format the slot start time
+  const slotFormatted = format(slot, 'yyyy-MM-dd HH:mm:ss');
+
+  return bookings.some((booking) => {
+    // Format booking start and end times
+    const bookingStartFormatted = format(
+      new Date(booking.startTime),
+      'yyyy-MM-dd HH:mm:ss',
+    );
+    const bookingEndFormatted = format(
+      new Date(booking.endTime),
       'yyyy-MM-dd HH:mm:ss',
     );
 
-  const data = bookings.some(
-    (booking) => formatNew(slot) === formatNew(new Date(booking.startTime)),
-  );
-  return data;
+    // Check if the slot falls within the booking interval
+    return (
+      slotFormatted >= bookingStartFormatted &&
+      slotFormatted < bookingEndFormatted
+    );
+  });
 }
 
 export function delay(time: number) {
