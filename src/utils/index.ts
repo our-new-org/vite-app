@@ -49,9 +49,19 @@ export function getDayOfWeek(dateString: string): string {
 }
 
 export function isSlotBooked(slot: Date, bookings: Booking[]) {
+  // Get the current time
+  const currentTime = new Date();
+  const currentTimeFormatted = format(currentTime, 'yyyy-MM-dd HH:mm:ss');
+
   // Format the slot start time
   const slotFormatted = format(slot, 'yyyy-MM-dd HH:mm:ss');
 
+  // Check if the slot is in the past
+  if (slotFormatted < currentTimeFormatted) {
+    return true; // The slot is in the past and cannot be booked
+  }
+
+  // Check against the bookings
   return bookings.some((booking) => {
     // Format booking start and end times
     const bookingStartFormatted = format(
