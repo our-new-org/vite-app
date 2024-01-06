@@ -13,7 +13,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const useBooking = () => {
   const navigate = useNavigate();
   const { user, fetchUser } = useAuthStore();
-  const { facility } = useFacilityStore();
+  const { facility, setFacility } = useFacilityStore();
   const { selectedDate, selectedSlot, setSelectedSlot } = useDatePickerStore();
   const { setBookingDetails } = useBookingStore();
 
@@ -46,6 +46,7 @@ const useBooking = () => {
       const result = await response.json();
       fetchUser();
       setSelectedSlot(null);
+      setFacility(null);
       setBookingDetails(result);
       navigate('/confirmation');
     } catch (error) {

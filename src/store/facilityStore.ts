@@ -4,6 +4,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 interface FacilitiyStore {
   facility: Facility | null;
+  setFacility: (facility: Facility | null) => void;
   facilities: Facility[] | null;
   fetchFacility: (facilityId: number) => Promise<void>;
   fetchFacilities: () => Promise<void>;
@@ -12,6 +13,7 @@ interface FacilitiyStore {
 export const useFacilityStore = create<FacilitiyStore>((set) => ({
   facility: null,
   facilities: null,
+  setFacility: (facility: Facility | null) => set({ facility }),
   fetchFacilities: async () => {
     try {
       const response = await fetch(`${API_URL}/facilities`);

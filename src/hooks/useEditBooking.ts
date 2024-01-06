@@ -12,8 +12,8 @@ const API_URL = import.meta.env.VITE_API_URL;
 const useEditBooking = (bookingId: string | undefined | null) => {
   const navigate = useNavigate();
   const { user, fetchUser } = useAuthStore();
-  const { facility } = useFacilityStore();
-  const { selectedDate, selectedSlot } = useDatePickerStore();
+  const { facility, setFacility } = useFacilityStore();
+  const { selectedDate, selectedSlot, setSelectedSlot } = useDatePickerStore();
   const { setBookingDetails } = useBookingStore();
 
   const handleEditBooking = useCallback(async () => {
@@ -44,6 +44,8 @@ const useEditBooking = (bookingId: string | undefined | null) => {
 
       const result = await response.json();
       fetchUser();
+      setSelectedSlot(null);
+      setFacility(null);
       setBookingDetails(result);
       navigate('/confirmation');
     } catch (error) {
