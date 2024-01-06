@@ -1,10 +1,11 @@
 import { Drawer } from 'antd';
 import { useAuthStore } from '../store/authStore';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import supabase from '../libs/supabase';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { useAuth } from '../hooks/useAuth';
 import { delay } from '../utils';
+import { useDatePickerStore } from '../store/datePickerStore';
 
 type MenuDrawerProps = {
   visible: boolean;
@@ -14,9 +15,17 @@ type MenuDrawerProps = {
 const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
   const { user, session } = useAuthStore();
   const { scrollToLogin } = useAuth();
+  const navigate = useNavigate();
+  const { setSelectedSlot } = useDatePickerStore();
 
   const handleLinkClick = () => {
     onClose();
+  };
+
+  const handleClick = () => {
+    navigate('/dashboard/facilities');
+    setSelectedSlot(null);
+    handleLinkClick();
   };
 
   return (
@@ -39,7 +48,7 @@ const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
               <Link
                 className="menu-list__link"
                 to="/dashboard/facilities"
-                onClick={handleLinkClick}>
+                onClick={handleClick}>
                 Make a Booking
               </Link>
             </>

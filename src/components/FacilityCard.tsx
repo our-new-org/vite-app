@@ -2,6 +2,7 @@ import { Button } from 'antd';
 import { Facility } from '../types';
 import { useNavigate } from 'react-router-dom';
 import { useFacilityStore } from '../store/facilityStore';
+import { useDatePickerStore } from '../store/datePickerStore';
 
 type FacilityCardProp = {
   facility: Facility;
@@ -10,9 +11,11 @@ type FacilityCardProp = {
 const FacilityCard = ({ facility }: FacilityCardProp) => {
   const navigate = useNavigate();
   const { setFacility } = useFacilityStore();
+  const { setSelectedSlot } = useDatePickerStore();
 
   const handleClick = () => {
     setFacility(null);
+    setSelectedSlot(null);
     navigate(`/dashboard/facilities/${facility.id}`);
   };
 
