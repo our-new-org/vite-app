@@ -42,18 +42,18 @@ const Navbar = () => {
         <Flex gap={10}>
           {user && !mobileView && (
             <Flex gap={40} align="center" style={{ marginRight: '20px' }}>
+              <Button onClick={handleClick} type="primary">
+                Book Now
+              </Button>
+              <Link className="navigation__link" to="/dashboard">
+                Active Bookings
+              </Link>
               <Link
                 className="navigation__link"
                 to="/dashboard/facilities"
-                onClick={handleClick}>
-                Make a Booking
-              </Link>
-              <Link className="navigation__link" to="/dashboard">
-                My Bookings
-              </Link>
-              <Button onClick={() => supabase.auth.signOut()} type="primary">
+                onClick={() => supabase.auth.signOut()}>
                 Sign out
-              </Button>
+              </Link>
             </Flex>
           )}
           <MenuDrawer visible={drawerVisible} onClose={onCloseDrawer} />
