@@ -53,8 +53,8 @@ const BookingPage = () => {
 
   return (
     <AnimatedDiv>
-      <div style={{ marginTop: '60px', padding: '20px' }}>
-        <h1 className="page__title">Booking Details</h1>
+      <h1 className="page__title">Booking Details</h1>
+      <div style={{ padding: '20px' }}>
         {booking && (
           <Card
             className="shadow booking-details-wrapper"
