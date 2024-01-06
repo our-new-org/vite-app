@@ -1,8 +1,26 @@
 import { GithubOutlined, HeartOutlined } from '@ant-design/icons';
+import { useWindowSize } from '@uidotdev/usehooks';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const size = useWindowSize();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    console.log(pathname);
+  }, [pathname]);
+  console.log(pathname);
+
   return (
-    <footer className="footer">
+    <footer
+      className="footer"
+      style={{
+        backgroundColor:
+          pathname === '/' && size.width && size.width < 768
+            ? 'white'
+            : '#eff2fa',
+      }}>
       <div className="footer__content">
         <div className="footer__content__contact">
           <h5 className="footer__content__title">© 2023 All rights reserved</h5>
