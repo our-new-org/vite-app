@@ -1,5 +1,5 @@
 .active-bookings {
-  padding: 20px;
+  padding: 0px 20px;
   width: 100%;
   max-width: 640px;
   display: flex;
@@ -51,11 +51,11 @@
   display: block;
   width: 100%;
   text-align: left;
-  color: var(--action-color); 
+  color: var(--action-color);
   transition: color 0.3s ease-in-out;
 
   &:hover {
-    color: var(--action-color-hover); 
+    color: var(--action-color-hover);
   }
 }
 
@@ -64,10 +64,10 @@
   display: block;
   width: 100%;
   text-align: left;
-  color: var(--action-color); 
+  color: var(--action-color);
   transition: color 0.3s ease-in-out;
 
   &:hover {
-    color: var(--action-color-hover);   
+    color: var(--action-color-hover);
   }
 }

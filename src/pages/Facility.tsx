@@ -36,10 +36,10 @@ const Facility = () => {
           <div>
             <LoadingOutlined
               spin
-              style={{ fontSize: 80, marginBottom: '20px' }}
+              style={{ fontSize: 80, marginBottom: '40px' }}
             />
           </div>
-          Loading facility data...
+          Loading facility...
         </div>
       </AnimatedDiv>
     );

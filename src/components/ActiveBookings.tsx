@@ -7,7 +7,6 @@ import { Booking } from '../types';
 import { useBookingStore } from '../store/bookingStore';
 import ConfirmationModal from './ConfirmationModal';
 import { useEffect, useState } from 'react';
-import MakeABooking from './MakeABooking';
 
 const ActiveBookings = () => {
   const { user } = useAuthStore();
@@ -69,7 +68,6 @@ const ActiveBookings = () => {
 
   return (
     <div className="active-bookings">
-      <MakeABooking />
       <h2 className="page__secondary__title">Active Bookings</h2>
       {user && user?.bookings.length > 0 ? (
         user.bookings.map((booking) => (
