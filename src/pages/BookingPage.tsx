@@ -61,7 +61,9 @@ const BookingPage = () => {
             key={booking.id}
             size="small"
             extra={null}>
-            <h4 className="booking-details-wrapper__heading">Booking Details</h4>
+            <h4 className="booking-details-wrapper__heading">
+              Booking Details
+            </h4>
             <p>
               <span className="booking__label">Facility: </span>
               {booking.facilityName}
@@ -103,11 +105,10 @@ const BookingPage = () => {
           </Card>
         )}
         {facility && <FacilityInfo facility={facility} />}
-        </div>
-        <Link to="/dashboard" className="confirmation-link">
+      </div>
+      <Link to="/dashboard" className="confirmation-link">
         Go Back to Dashboard
       </Link>
-      </div>
     </AnimatedDiv>
   );
 };
