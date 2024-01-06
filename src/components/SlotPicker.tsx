@@ -1,4 +1,3 @@
-// SlotPicker component
 import React from 'react';
 import Slot from './Slot';
 import { useFacilityStore } from '../store/facilityStore';
@@ -8,11 +7,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useSlots from '../hooks/useSlots'; // Custom hook for slot generation
 
 const SlotPicker: React.FC = () => {
-  // Fetching global state from Zustand stores
   const { facility } = useFacilityStore();
   const { selectedDate, selectedSlot, setSelectedSlot } = useDatePickerStore();
 
-  // Using a custom hook for slots calculation
   const slots = useSlots(selectedDate, facility);
 
   if (!facility) {
