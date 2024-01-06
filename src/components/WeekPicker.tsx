@@ -76,7 +76,6 @@ const WeekPicker = ({ bookingId }: { bookingId?: string }) => {
 
   return (
     <>
-      <h1 className="page__secondary__title">Select date</h1>
       <div className="week-picker">
         <div className="select-week">
           <LeftOutlined

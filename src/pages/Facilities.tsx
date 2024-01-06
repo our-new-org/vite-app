@@ -19,6 +19,7 @@ const Facilities = () => {
             opacity: 0.3,
             display: 'flex',
             flexDirection: 'column',
+            marginTop: '200px',
             alignItems: 'center',
           }}>
           <div>

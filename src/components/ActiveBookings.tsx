@@ -68,7 +68,6 @@ const ActiveBookings = () => {
 
   return (
     <div className="active-bookings">
-      <h2 className="page__secondary__title">Active Bookings</h2>
       {user && user?.bookings.length > 0 ? (
         user.bookings.map((booking) => (
           <Card
