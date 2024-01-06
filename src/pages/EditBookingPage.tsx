@@ -22,7 +22,15 @@ const EditBookingPage = () => {
   if (!facility) return <div>Loading booking</div>;
   return (
     <AnimatedDiv>
-      <div style={{ padding: '20px' }}>
+      <div
+        style={{
+          padding: '20px',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <WeekPicker bookingId={bookingId} />
         <SlotPicker />
         <div

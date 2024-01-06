@@ -76,7 +76,10 @@ const ActiveBookings = () => {
             size="small"
             title={renderTitle(booking)}
             extra={
-              <Popover placement="leftTop" content={renderEditMenu(booking)}>
+              <Popover
+                trigger="click"
+                placement="leftTop"
+                content={renderEditMenu(booking)}>
                 <EditOutlined className="booking-edit" />
               </Popover>
             }>
