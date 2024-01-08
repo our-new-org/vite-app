@@ -4,13 +4,12 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const baseUrl = mode === 'production' ? '/shared-nest/' : '/';
-  console.log(baseUrl);
 
   return {
     plugins: [react()],
     optimizeDeps: {
       exclude: ['react-date-picker'],
     },
-    base: '/shared-nest/',
+    base: baseUrl,
   };
 });
