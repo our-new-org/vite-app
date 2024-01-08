@@ -61,6 +61,11 @@
   }
 }
 
+.no-bottom {
+  padding-bottom: 0px !important;
+  height: 60px;
+}
+
 .close-icon {
   color: var(--action-color);
   &:hover {

@@ -2,12 +2,13 @@ import logo from '../assets/logo-image.png';
 import { Button, Flex } from 'antd';
 import { useAuthStore } from '../store/authStore';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MenuDrawer from './MenuDrawer';
 import { useWindowSize } from '@uidotdev/usehooks';
 import supabase from '../libs/supabase';
 import { TiThMenu } from 'react-icons/ti';
 import { useDatePickerStore } from '../store/datePickerStore';
+import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const { user } = useAuthStore();
@@ -16,6 +17,7 @@ const Navbar = () => {
   const mobileView = size.width ? (size.width < 600 ? true : false) : false;
   const navigate = useNavigate();
   const { setSelectedSlot } = useDatePickerStore();
+  const location = useLocation();
 
   const showDrawer = () => {
     setDrawerVisible(true);
@@ -30,8 +32,20 @@ const Navbar = () => {
     setSelectedSlot(null);
   };
 
+  useEffect(() => {
+    if (location.pathname.includes('dashboard')) {
+      console.log('found one');
+    } else {
+      console.log('found two');
+    }
+    location.pathname.includes('dashboard');
+  }, [location]);
+
   return (
-    <nav className="navigation">
+    <nav
+      className={`navigation ${
+        location.pathname.includes('dashboard') ? 'no-bottom' : ''
+      }`}>
       <span>
         <Link to="/" className="brand-link">
           <img src={logo} alt="log" height={30} width={40} />
