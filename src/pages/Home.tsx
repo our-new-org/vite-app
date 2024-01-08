@@ -128,7 +128,7 @@ export default function Home() {
                     width: '100%',
                   }}>
                   <Button style={{ width: '100%' }} onClick={() => signIn()}>
-                    Login with Test Accout
+                    Sign in with Test Account
                   </Button>
                 </div>
               </div>
