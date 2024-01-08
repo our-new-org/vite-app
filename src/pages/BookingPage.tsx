@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import ConfirmationModal from '../components/ConfirmationModal';
 import { useBookingStore } from '../store/bookingStore';
 import AnimatedDiv from '../components/AnimatedDiv';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const BookingPage = () => {
   const { bookingId } = useParams();
@@ -51,60 +52,115 @@ const BookingPage = () => {
     if (!booking) navigate('/dashboard');
   }, [booking]);
 
+  if (!facility) {
+    return (
+      <AnimatedDiv>
+        <div
+          style={{
+            opacity: 0.3,
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: '200px',
+            alignItems: 'center',
+          }}>
+          <div>
+            <LoadingOutlined
+              spin
+              style={{ fontSize: 80, marginBottom: '40px' }}
+            />
+          </div>
+          Loading details...
+        </div>
+      </AnimatedDiv>
+    );
+  }
+
   return (
     <AnimatedDiv>
-      <h1 className="page__title">Booking Details</h1>
-      <div style={{ padding: '20px' }}>
+      <h1 className="page__title">{facility.name} Booking</h1>
+      <div className="details-page">
+        {facility && <FacilityInfo facility={facility} />}
         {booking && (
           <Card
             className="shadow booking-details-wrapper"
             key={booking.id}
             size="small"
             extra={null}>
-            <h4 className="booking-details-wrapper__heading">
-              Booking Details
-            </h4>
-            <p>
-              <span className="booking__label">Facility: </span>
-              {booking.facilityName}
-            </p>
-            <p>
-              <span className="booking__label">When:</span>{' '}
-              {getDayOfWeek(booking.date)} {formatDate(booking.date)}
-            </p>
-            <p>
-              <span className="booking__label">Time:</span>{' '}
-              {formatTime(booking.startTime)} - {formatTime(booking.endTime)}
-            </p>
-            <p>
-              <span className="booking__label">Created On: </span>
-              {formatDate(String(booking.createdAt))}
-            </p>
-            <Divider />
-            <Flex justify="end" gap={20}>
-              <Button
-                type="primary"
-                onClick={() =>
-                  navigate(
-                    `/dashboard/bookings/${bookingId}/${facility?.id}/edit`,
-                  )
-                }>
-                Edit
-              </Button>
-              <Button
-                type="dashed"
-                onClick={() => handleCancelBooking(booking.id)}>
-                Cancel
-              </Button>
-            </Flex>
-            <ConfirmationModal
-              open={isModalVisible}
-              onConfirm={() => handleConfirm(booking.id)}
-              onCancel={handleCancelModal}
-            />
+            <div
+              style={{
+                display: 'flex',
+                minWidth: '180px',
+                gap: '5px',
+                flexDirection: 'column',
+                width: '100%',
+              }}>
+              <h4 className="booking-details-wrapper__heading">
+                Booking Details
+              </h4>
+              <p
+                style={{
+                  borderBottom: '1px solid lightgrey',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                }}>
+                <span className="booking__label">Facility</span>{' '}
+                <span>{booking.facilityName}</span>
+              </p>
+              <p
+                style={{
+                  borderBottom: '1px solid lightgrey',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                }}>
+                <span className="booking__label">Time</span>{' '}
+                {formatTime(booking.startTime)} - {formatTime(booking.endTime)}
+              </p>
+              <p
+                style={{
+                  borderBottom: '1px solid lightgrey',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                }}>
+                <span className="booking__label">When</span>{' '}
+                {getDayOfWeek(booking.date)} {formatDate(booking.date)}
+              </p>
+
+              <p
+                style={{
+                  borderBottom: '1px solid lightgrey',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                }}>
+                <span className="booking__label">Created: </span>
+                {formatDate(String(booking.createdAt))}
+              </p>
+              <Divider />
+              <Flex justify="end" gap={20}>
+                <Button
+                  type="primary"
+                  style={{ width: '50%' }}
+                  onClick={() =>
+                    navigate(
+                      `/dashboard/bookings/${bookingId}/${facility?.id}/edit`,
+                    )
+                  }>
+                  Reschedule
+                </Button>
+                <Button
+                  type="dashed"
+                  style={{ width: '50%' }}
+                  onClick={() => handleCancelBooking(booking.id)}>
+                  Cancel Booking
+                </Button>
+              </Flex>
+              <ConfirmationModal
+                open={isModalVisible}
+                onConfirm={() => handleConfirm(booking.id)}
+                onCancel={handleCancelModal}
+              />
+            </div>
           </Card>
         )}
-        {facility && <FacilityInfo facility={facility} />}
       </div>
     </AnimatedDiv>
   );

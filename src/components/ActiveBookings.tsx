@@ -2,14 +2,17 @@ import { Button, Card, Flex, Popover } from 'antd';
 import { describeDate, formatDate, formatTime, getDayOfWeek } from '../utils';
 import { EditOutlined } from '@ant-design/icons';
 import { useAuthStore } from '../store/authStore';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Booking } from '../types';
 import { useBookingStore } from '../store/bookingStore';
 import ConfirmationModal from './ConfirmationModal';
 import { useEffect, useState } from 'react';
+import { useFacilityStore } from '../store/facilityStore';
 
 const ActiveBookings = () => {
   const { user } = useAuthStore();
+  const { setFacility } = useFacilityStore();
+  const navigate = useNavigate();
   const { cancelBooking } = useBookingStore();
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentId, setCurrentId] = useState<number | null>(null);
@@ -34,27 +37,33 @@ const ActiveBookings = () => {
     }
   };
 
+  const handleDetailsClick = (bookingId: number) => {
+    setFacility(null);
+    navigate(`/dashboard/bookings/${bookingId}`);
+  };
+
   const handleCancelModal = () => {
     setModalVisible(false);
   };
 
   const renderEditMenu = (booking: Booking) => (
     <Flex vertical align="start" className="edit-menu">
-      <Link
-        to={`/dashboard/bookings/${booking.id}`}
-        className="edit-menu__link">
-        Details
-      </Link>
+      <Button
+        type="link"
+        className="edit-menu__button"
+        onClick={() => handleDetailsClick(booking.id)}>
+        Booking Details
+      </Button>
       <Link
         to={`/dashboard/bookings/${booking.id}/${booking.facilityId}/edit`}
         className="edit-menu__link">
-        Edit
+        Reschedule
       </Link>
       <Button
         type="link"
         className="edit-menu__button"
         onClick={() => handleCancelBooking(booking.id)}>
-        Cancel
+        Cancel Booking
       </Button>
     </Flex>
   );

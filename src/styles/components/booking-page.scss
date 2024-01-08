@@ -17,14 +17,30 @@
 
 .booking-details-wrapper__heading {
   margin-bottom: 10px;
+  opacity: 0.8;
 }
 
 .facility-info {
   flex: 2;
 }
 
+.details-page {
+  align-items: start;
+  padding: 0px 20px;
+  display: flex;
+  gap: 20px;
+  //flex-direction: column-reverse;
+  flex-direction: column;
+
+  width: 100%;
+}
+
 @media (min-width: 768px) {
   .booking-details {
+    flex-direction: row;
+  }
+
+  .details-page {
     flex-direction: row;
   }
 }

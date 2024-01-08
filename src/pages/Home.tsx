@@ -10,7 +10,7 @@ import { useWindowSize } from '@uidotdev/usehooks';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
-  const { session } = useAuthStore();
+  const { session, user } = useAuthStore();
   const { scrollToLogin } = useAuth();
   const size = useWindowSize();
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ export default function Home() {
             <img src={homeImage} alt="building" className="home__image" />
             <div className="image__content">
               <div>
-                <h1 style={{marginTop: '10px'}}>SharedNest</h1>
+                <h1 style={{ marginTop: '10px' }}>SharedNest</h1>
                 <h2>Your Gateway to Hassle-Free Facility Access</h2>
               </div>
               {size.width && size.width < 768 && (
@@ -64,7 +64,12 @@ export default function Home() {
           </div>
           <div className="login-container">
             {!session ? (
-              <div style={{ display: 'flex', flexDirection: 'column' , marginTop: '10px'}}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  marginTop: '10px',
+                }}>
                 <Auth
                   localization={{
                     variables: {
@@ -140,7 +145,29 @@ export default function Home() {
                 </div>
               </div>
             ) : (
-              <h3>Signed In!</h3>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '20px',
+                }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '2px',
+                  }}>
+                  <h3>Signed in with</h3>
+                  <span>{user?.email}</span>
+                </div>
+                <Button
+                  onClick={() => navigate('/dashboard/facilities')}
+                  type="primary">
+                  Explore Facilities
+                </Button>
+              </div>
             )}
           </div>
         </div>

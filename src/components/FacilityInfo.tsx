@@ -10,7 +10,7 @@ type FacilityInfoProps = {
 const FacilityInfo = ({ facility }: FacilityInfoProps) => {
   return (
     <div className="facility" style={{ padding: '0px' }}>
-      <div className="facility__info" style={{ marginTop: '20px' }}>
+      <div className="facility__info">
         <div className="image-container">
           <img
             src={facility.image}
