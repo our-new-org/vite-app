@@ -42,7 +42,7 @@ export default function Home() {
           <div className="home__image__container">
             <img src={homeImage} alt="building" className="home__image" />
             <div className="image__content">
-              <div>
+              <div style={{marginTop: '10px'}}>
                 <h1>SharedNest</h1>
                 <h2>Your Gateway to Hassle-Free Facility Access</h2>
               </div>
