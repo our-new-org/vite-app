@@ -31,7 +31,7 @@
   .user-card__email {
     opacity: 0.7;
     margin-bottom: 5px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 700;
   }
 
@@ -40,5 +40,11 @@
     font-size: 16px;
     color: var(--action-color);
     font-weight: 500;
+  }
+}
+
+@media (min-width: 400px) {
+  .user-card__email {
+    font-size: 18px !important;
   }
 }
