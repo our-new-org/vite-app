@@ -126,20 +126,8 @@ export default function Home() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     width: '100%',
-                    gap: '10px',
                   }}>
-                  <small
-                    style={{
-                      display: 'flex',
-                      opacity: '0.5',
-                      marginBottom: '20px',
-                    }}>
-                    or
-                  </small>
-                  <Button
-                    style={{ width: '100%' }}
-                    type="primary"
-                    onClick={() => signIn()}>
+                  <Button style={{ width: '100%' }} onClick={() => signIn()}>
                     Login with Test Accout
                   </Button>
                 </div>
