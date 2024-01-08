@@ -69,6 +69,6 @@
   transition: color 0.3s ease-in-out;
 
   &:hover {
-    color: var(--action-color-hover);
+    color: var(--action-color-hover) !important;
   }
 }
