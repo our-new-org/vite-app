@@ -40,16 +40,16 @@ const MenuDrawer = ({ visible, onClose }: MenuDrawerProps) => {
           {user ? (
             <>
               <Link
-                to="/dashboard"
-                onClick={handleLinkClick}
-                className="menu-list__link">
-                My Bookings
-              </Link>
-              <Link
                 className="menu-list__link"
                 to="/dashboard/facilities"
                 onClick={handleClick}>
-                Make a Booking
+                Book Now
+              </Link>
+              <Link
+                to="/dashboard"
+                onClick={handleLinkClick}
+                className="menu-list__link">
+                Active Bookings
               </Link>
             </>
           ) : (
