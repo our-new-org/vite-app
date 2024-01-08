@@ -1,52 +1,51 @@
-import {
-  ClockCircleOutlined,
-  LockOutlined,
-  TeamOutlined,
-  UnlockOutlined,
-} from '@ant-design/icons';
+import { ClockCircleOutlined } from '@ant-design/icons';
 import { Facility } from '../types';
-import { Card } from 'antd';
-
+import { MdOutlineTimer } from 'react-icons/md';
+import { PiUsersThree } from 'react-icons/pi';
 
 type FacilityInfoProps = {
   facility: Facility;
 };
 
 const FacilityInfo = ({ facility }: FacilityInfoProps) => {
-  const slotDurationInHours = facility.slotDuration / 60;
   return (
-    <Card className="facility-info" size="small">
-      <div className="facility-info__container">
-        <img src={facility.image} alt="" className="facility-info__image" />
-        <div className="facility-info__details">
-          <h3>
-            <TeamOutlined className="icon" />
-            <span className="facility-info__label">Capacity:</span>
-            <span className="facility-info__data">{facility.capacity}</span>
-          </h3>
-          <h3>
-            <UnlockOutlined className="icon" /> 
-            <span className="facility-info__label">Opens:</span>
-            <span className="facility-info__data">{`${facility.openingHour}:00`}</span>
-          </h3>
-          <h3>
-            <LockOutlined className="icon" /> 
-            <span className="facility-info__label">Closes:</span>
-            <span className="facility-info__data">{`${facility.closingHour}:00`}</span>
-          </h3>
-          <h3>
-            <ClockCircleOutlined className="icon" /> 
-            <span className="facility-info__label">Slot duration:</span>
-            <span className="facility-info__data">
-              {slotDurationInHours}{' '}
-              {slotDurationInHours === 1 ? 'hour' : 'hours'}
-            </span>
-          </h3>
+    <div className="facility" style={{ padding: '0px' }}>
+      <div className="facility__info" style={{ marginTop: '20px' }}>
+        <div className="image-container">
+          <img
+            src={facility.image}
+            alt={facility.name}
+            className="facility__image"
+          />
         </div>
+        <div className="group-container">
+          <div className="facility__info__group">
+            <MdOutlineTimer className="facility__info__icon" />
+            <small className="facility__info__small">
+              {facility.slotDuration === 0
+                ? '1 day'
+                : facility.slotDuration / 60 === 1
+                ? '1 hour'
+                : facility.slotDuration / 60 + ' hours'}
+            </small>
+          </div>
+          <div className="facility__info__group">
+            <PiUsersThree className="facility__info__icon" />
+            <small className="facility__info__small">{facility.capacity}</small>
+          </div>
+          <div className="facility__info__group">
+            <ClockCircleOutlined className="facility__info__icon" />
+            <small className="facility__info__small">
+              {facility.openingHour} - {facility.closingHour}
+            </small>
+          </div>
+        </div>
+
+        <h2 className="facility__info__title">{facility.name}</h2>
+        <p className="facility__info__description">{facility.description}</p>
+        <div className="book__now"></div>
       </div>
-      <p className="facility-info__description">{facility?.description}</p>
-     
-    </Card>
+    </div>
   );
 };
 
