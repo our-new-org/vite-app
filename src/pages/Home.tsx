@@ -42,8 +42,8 @@ export default function Home() {
           <div className="home__image__container">
             <img src={homeImage} alt="building" className="home__image" />
             <div className="image__content">
-              <div style={{marginTop: '10px'}}>
-                <h1>SharedNest</h1>
+              <div>
+                <h1 style={{marginTop: '10px'}}>SharedNest</h1>
                 <h2>Your Gateway to Hassle-Free Facility Access</h2>
               </div>
               {size.width && size.width < 768 && (
@@ -64,7 +64,7 @@ export default function Home() {
           </div>
           <div className="login-container">
             {!session ? (
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', flexDirection: 'column' , marginTop: '10px'}}>
                 <Auth
                   localization={{
                     variables: {
