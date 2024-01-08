@@ -1,16 +1,10 @@
 import { GithubOutlined, HeartOutlined } from '@ant-design/icons';
 import { useWindowSize } from '@uidotdev/usehooks';
-import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
   const size = useWindowSize();
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
-  console.log(pathname);
 
   return (
     <footer

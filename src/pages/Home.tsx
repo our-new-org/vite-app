@@ -15,6 +15,26 @@ export default function Home() {
   const size = useWindowSize();
   const navigate = useNavigate();
 
+  const signIn = async () => {
+    const email = 'test@salt.dev';
+    const password = 'episalt';
+
+    try {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+      console.log('User signed in:', user);
+    } catch (error) {
+      console.error('Error signing in:', error);
+    }
+  };
+
   return (
     <AnimatedDiv className="home">
       <main className="home-container">
@@ -44,55 +64,81 @@ export default function Home() {
           </div>
           <div className="login-container">
             {!session ? (
-              <Auth
-                localization={{
-                  variables: {
-                    sign_in: {
-                      email_label: 'Email',
-                      email_input_placeholder: 'test@salt.dev',
-                      password_label: 'Password',
-                      password_input_placeholder: '******',
-                      link_text: 'No Account? Sign up',
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <Auth
+                  localization={{
+                    variables: {
+                      sign_in: {
+                        email_label: 'Email',
+                        email_input_placeholder: 'test@salt.dev',
+                        password_label: 'Password',
+                        password_input_placeholder: '******',
+                        link_text: 'No Account? Sign up',
+                      },
+                      sign_up: {
+                        email_label: 'Email',
+                        email_input_placeholder: 'test@salt.dev',
+                        password_label: 'Password',
+                        password_input_placeholder: '******',
+                        link_text: 'No Account? Sign up',
+                      },
+                      forgotten_password: {
+                        email_label: 'Email',
+                        email_input_placeholder: 'test@salt.dev',
+                        password_label: 'Password',
+                        link_text: 'Forgot password?',
+                      },
                     },
-                    sign_up: {
-                      email_label: 'Email',
-                      email_input_placeholder: 'test@salt.dev',
-                      password_label: 'Password',
-                      password_input_placeholder: '******',
-                      link_text: 'No Account? Sign up',
+                  }}
+                  supabaseClient={supabase}
+                  appearance={{
+                    className: 'auth-container',
+                    theme: ThemeSupa,
+                    style: {
+                      input: { border: '1px solid #ef7ca0' },
+                      container: { color: 'white', minWidth: '250px' },
+                      anchor: {
+                        color: '#ef7ca0',
+                        textDecoration: 'none',
+                      },
+                      button: {
+                        backgroundColor: '#ef7ca0',
+                        borderColor: '#ef7ca0',
+                        boxShadow:
+                          '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+                        color: 'white',
+                        borderRadius: '5px',
+                      },
                     },
-                    forgotten_password: {
-                      email_label: 'Email',
-                      email_input_placeholder: 'test@salt.dev',
-                      password_label: 'Password',
-                      link_text: 'Forgot password?',
-                    },
-                  },
-                }}
-                supabaseClient={supabase}
-                appearance={{
-                  className: 'auth-container',
-                  theme: ThemeSupa,
-                  style: {
-                    input: { border: '1px solid #ef7ca0' },
-                    container: { color: 'white', minWidth: '250px' },
-                    anchor: {
-                      color: '#ef7ca0',
-                      textDecoration: 'none',
-                    },
-                    button: {
-                      backgroundColor: '#ef7ca0',
-                      borderColor: '#ef7ca0',
-                      boxShadow:
-                        '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-                      color: 'white',
-                      borderRadius: '5px',
-                    },
-                  },
-                }}
-                theme="default"
-                providers={[]}
-              />
+                  }}
+                  theme="default"
+                  providers={[]}
+                />
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                    gap: '10px',
+                  }}>
+                  <small
+                    style={{
+                      display: 'flex',
+                      opacity: '0.5',
+                      marginBottom: '20px',
+                    }}>
+                    or
+                  </small>
+                  <Button
+                    style={{ width: '100%' }}
+                    type="primary"
+                    onClick={() => signIn()}>
+                    Login with Test Accout
+                  </Button>
+                </div>
+              </div>
             ) : (
               <h3>Signed In!</h3>
             )}
